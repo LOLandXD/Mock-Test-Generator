@@ -219,6 +219,49 @@ def _write_classes(d):
     _save_json(CLASSES_FILE, d)
 
 
+# --- school documents storage ---
+SCHOOL_DOCS_FILE = ROOT / "school_docs.json"
+SCHOOL_DOCS_DIR = ROOT / "school_docs"
+DOC_MAX_BYTES = 25 * 1024 * 1024  # 25 MB raw
+DOC_CATEGORIES = ["science", "physics", "chemistry", "biology", "math",
+                  "computer science", "english", "history", "geography", "other"]
+DOC_MIME = {
+    "pdf": "application/pdf", "docx": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+    "doc": "application/msword", "pptx": "application/vnd.openxmlformats-officedocument.presentationml.presentation",
+    "ppt": "application/vnd.ms-powerpoint",
+    "xlsx": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+    "xls": "application/vnd.ms-excel", "csv": "text/csv", "txt": "text/plain; charset=utf-8",
+    "md": "text/markdown; charset=utf-8", "png": "image/png", "jpg": "image/jpeg", "jpeg": "image/jpeg",
+}
+
+
+def _read_school_docs():
+    return _load_json(SCHOOL_DOCS_FILE, {})
+
+
+def _write_school_docs(d):
+    _save_json(SCHOOL_DOCS_FILE, d)
+
+
+def _doc_file(doc):
+    return SCHOOL_DOCS_DIR / f"{doc['id']}.{doc['ext']}"
+
+
+def _norm_school(s):
+    return " ".join((s or "").split()).casefold()
+
+
+def _user_school_entry(user):
+    """(display_name, normalized) of the user's school, or (None, None)."""
+    u = _read_users().get(user) or {}
+    s = (u.get("school") or "").strip()
+    return (s, _norm_school(s)) if s else (None, None)
+
+
+def _doc_visible_to(doc, school_norm):
+    return _norm_school(doc.get("school")) == school_norm
+
+
 def _pk_game_path(gid):
     return PK_DIR / f"{gid}.json"
 
@@ -943,6 +986,58 @@ class Handler(BaseHTTPRequestHandler):
                             if r.get("class_id") == c["code"]:
                                 reps.append(r)
                     self._send(json.dumps({"reports": list(reversed(reps))[:200]}))
+        elif path == "/api/schools":
+            if not user:
+                self._send('{"error": "login required"}', code=401)
+            else:
+                seen = {}
+                for u in _read_users().values():
+                    if u.get("role", "student") == "teacher" and (u.get("school") or "").strip():
+                        seen.setdefault(_norm_school(u["school"]), u["school"].strip())
+                self._send(json.dumps({"schools": sorted(seen.values(), key=str.casefold)}))
+        elif path == "/api/school/docs":
+            if not user:
+                self._send('{"error": "login required"}', code=401)
+            else:
+                _, norm = _user_school_entry(user)
+                if not norm:
+                    self._send('{"error": "join a school first"}', code=403)
+                else:
+                    from urllib.parse import parse_qs, urlparse
+                    qs = parse_qs(urlparse(self.path).query)
+                    cat = (qs.get("category", [""])[0] or "").strip().lower()
+                    docs = [d for d in _read_school_docs().values() if _doc_visible_to(d, norm)]
+                    if cat:
+                        docs = [d for d in docs if d.get("category") == cat]
+                    docs.sort(key=lambda d: (d.get("category", ""), d.get("chapter", "").casefold(),
+                                             d.get("title", "").casefold(), d.get("uploaded_at", "")))
+                    self._send(json.dumps({"categories": DOC_CATEGORIES, "docs": docs}))
+        elif m := re.match(r"^/api/school/docs/([a-f0-9]+)/download$", path):
+            if not user:
+                self._send('{"error": "login required"}', code=401)
+            else:
+                doc = _read_school_docs().get(m.group(1))
+                _, norm = _user_school_entry(user)
+                if not doc or not norm or not _doc_visible_to(doc, norm):
+                    self._send('{"error": "not found"}', code=404)
+                else:
+                    f = _doc_file(doc)
+                    if not f.exists():
+                        self._send('{"error": "file missing"}', code=404)
+                    else:
+                        from urllib.parse import parse_qs, urlparse
+                        qs = parse_qs(urlparse(self.path).query)
+                        inline = qs.get("inline", [""])[0] == "1" and doc["ext"] in ("pdf", "png", "jpg", "jpeg", "txt", "md")
+                        disp = "inline" if inline else "attachment"
+                        name = doc.get("filename") or f"{doc['title']}.{doc['ext']}"
+                        name = name.replace("\\", "_").replace('"', "_")
+                        data = f.read_bytes()
+                        self.send_response(200)
+                        self.send_header("Content-Type", DOC_MIME.get(doc["ext"], "application/octet-stream"))
+                        self.send_header("Content-Length", str(len(data)))
+                        self.send_header("Content-Disposition", f'{disp}; filename="{name}"')
+                        self.end_headers()
+                        self.wfile.write(data)
         elif path == "/api/stats":
             self._send(json.dumps(compute_stats(user)))
         elif m := re.match(r"^/api/test/([a-z0-9_]+)$", path):
@@ -1234,6 +1329,140 @@ class Handler(BaseHTTPRequestHandler):
                         self._send(json.dumps({"ok": True, "test_id": game["test_id"]}))
                     else:
                         self._send('{"error": "could not build test for this competition"}', code=400)
+        elif path == "/api/school/join":
+            if not user:
+                self._send('{"error": "login required"}', code=401)
+            else:
+                data = self._read_body()
+                want = (data.get("school") or "").strip()[:80]
+                if not want:
+                    self._send('{"error": "school name required"}', code=400)
+                else:
+                    want_norm = _norm_school(want)
+                    display = None
+                    for u in _read_users().values():
+                        if u.get("role", "student") == "teacher" and _norm_school(u.get("school")) == want_norm:
+                            display = u["school"].strip()
+                            break
+                    if not display:
+                        self._send('{"error": "no teacher found for that school — check the name"}', code=404)
+                    else:
+                        with _store_lock:
+                            users = _read_users()
+                            users[user]["school"] = display
+                            _write_users(users)
+                        self._send(json.dumps({"ok": True, "school": display}))
+        elif path == "/api/school/leave":
+            if not user:
+                self._send('{"error": "login required"}', code=401)
+            else:
+                with _store_lock:
+                    users = _read_users()
+                    users[user].pop("school", None)
+                    _write_users(users)
+                self._send('{"ok": true}')
+        elif path == "/api/school/docs/upload":
+            if not user:
+                self._send('{"error": "login required"}', code=401)
+            else:
+                u = _read_users().get(user) or {}
+                if u.get("role", "student") != "teacher":
+                    self._send('{"error": "teacher account required"}', code=403)
+                else:
+                    school, norm = _user_school_entry(user)
+                    if not norm:
+                        self._send('{"error": "teacher account has no school"}', code=400)
+                    else:
+                        try:
+                            import base64
+                            data = self._read_body()
+                            category = (data.get("category") or "").strip().lower()
+                            chapter = (data.get("chapter") or "").strip()[:80]
+                            title = (data.get("title") or "").strip()[:120]
+                            raw_name = os.path.basename(data.get("filename") or "")[:120]
+                            ext = raw_name.rsplit(".", 1)[1].lower() if "." in raw_name else ""
+                            if category not in DOC_CATEGORIES:
+                                self._send(json.dumps({"error": "invalid category"}), code=400)
+                            elif not chapter:
+                                self._send(json.dumps({"error": "chapter required"}), code=400)
+                            elif ext not in DOC_MIME:
+                                self._send(json.dumps({"error": "file type not allowed"}), code=400)
+                            else:
+                                blob = base64.b64decode(data.get("data_b64") or "", validate=True)
+                                if not blob:
+                                    self._send(json.dumps({"error": "empty file"}), code=400)
+                                elif len(blob) > DOC_MAX_BYTES:
+                                    self._send(json.dumps({"error": "file too large (max 25 MB)"}), code=400)
+                                else:
+                                    doc_id = secrets.token_hex(8)
+                                    doc = {"id": doc_id, "school": school, "category": category,
+                                           "chapter": chapter,
+                                           "title": title or raw_name.rsplit(".", 1)[0] or doc_id,
+                                           "filename": raw_name, "ext": ext, "size": len(blob),
+                                           "uploader": user,
+                                           "uploaded_at": time.strftime("%Y-%m-%d %H:%M:%S")}
+                                    SCHOOL_DOCS_DIR.mkdir(exist_ok=True)
+                                    _doc_file(doc).write_bytes(blob)
+                                    with _store_lock:
+                                        docs = _read_school_docs()
+                                        docs[doc_id] = doc
+                                        _write_school_docs(docs)
+                                    self._send(json.dumps({"ok": True, "id": doc_id}))
+                        except Exception as e:
+                            self._send(json.dumps({"error": str(e)}), code=400)
+        elif m := re.match(r"^/api/school/docs/([a-f0-9]+)/edit$", path):
+            if not user:
+                self._send('{"error": "login required"}', code=401)
+            else:
+                u = _read_users().get(user) or {}
+                if u.get("role", "student") != "teacher":
+                    self._send('{"error": "teacher account required"}', code=403)
+                else:
+                    _, norm = _user_school_entry(user)
+                    docs = _read_school_docs()
+                    doc = docs.get(m.group(1))
+                    if not doc or not norm or not _doc_visible_to(doc, norm):
+                        self._send('{"error": "not found"}', code=404)
+                    else:
+                        data = self._read_body()
+                        category = (data.get("category") or doc["category"]).strip().lower()
+                        if category not in DOC_CATEGORIES:
+                            self._send(json.dumps({"error": "invalid category"}), code=400)
+                        else:
+                            doc["category"] = category
+                            if "chapter" in data:
+                                doc["chapter"] = (data.get("chapter") or "").strip()[:80] or doc["chapter"]
+                            if "title" in data:
+                                doc["title"] = (data.get("title") or "").strip()[:120] or doc["title"]
+                            with _store_lock:
+                                docs = _read_school_docs()
+                                if m.group(1) in docs:
+                                    docs[m.group(1)] = doc
+                                    _write_school_docs(docs)
+                            self._send('{"ok": true}')
+        elif m := re.match(r"^/api/school/docs/([a-f0-9]+)/delete$", path):
+            if not user:
+                self._send('{"error": "login required"}', code=401)
+            else:
+                u = _read_users().get(user) or {}
+                if u.get("role", "student") != "teacher":
+                    self._send('{"error": "teacher account required"}', code=403)
+                else:
+                    _, norm = _user_school_entry(user)
+                    docs = _read_school_docs()
+                    doc = docs.get(m.group(1))
+                    if not doc or not norm or not _doc_visible_to(doc, norm):
+                        self._send('{"error": "not found"}', code=404)
+                    else:
+                        with _store_lock:
+                            docs = _read_school_docs()
+                            docs.pop(m.group(1), None)
+                            _write_school_docs(docs)
+                        try:
+                            _doc_file(doc).unlink()
+                        except OSError:
+                            pass
+                        self._send('{"ok": true}')
         else:
             self._send('{"error": "not found"}', code=404)
 

@@ -14,6 +14,11 @@ across generated tests (tracked in `tests/*_rand_*.json`).
 The backend is a single stdlib-Python file; the frontend is a vanilla-JS single page inlined in `app/static/index.html`.
 No `npm`, no `requirements.txt`, and no virtual-env packages are required for the app itself.
 
+Accounts can be students or teachers. Teachers get classes (join-code groups with per-class result reports)
+and a school-wide **School** tab: they upload documents (PDF/Office/images/text, ≤25 MB) organized by
+category → chapter into `school_docs/` (indexed by `school_docs.json`), and students who joined the same
+school can browse, preview, and download them.
+
 ```bash
 python app/server.py    # then open http://localhost:8000
 ```
