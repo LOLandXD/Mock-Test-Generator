@@ -175,6 +175,11 @@ routes/                       每个页面一个文件（Bank, MyTests, NewTest,
                               Analysis 模考分析报告, Mistakes 错题+同类题练习…）
 routes/whiteboard/            白板的纯逻辑（data.ts / keys.ts）
 components/Layout.tsx         侧栏 + 顶栏；components/icons.ts 是全站图标唯一来源
+components/AutoMath.tsx      全部数学渲染走这里（KaTeX auto-render）；配套 lib/latex.ts：
+                              sanitizeLatex（整串预处理）+ fixMathSpan（auto-render 的
+                              preProcess，逐 span 修复花括号/环境/\hline/丢分母等）+ MACROS
+                              （AoPS/Putnam 自定义宏）。**回归基准：`node scripts/latex_scan.mjs`
+                              必须 0 错误**（15 万+ 数学片段全库扫描，退改这条管线时先跑它）
 lib/api.ts                    唯一的 API 客户端，视图不要自己 fetch()
 lib/i18n.ts                   en + zh 全部文案（一个对象里两份）；lib/i18n-provider.tsx 提供 t()
 lib/theme.ts + theme-provider.tsx  light / dark / system，localStorage `mt_theme`

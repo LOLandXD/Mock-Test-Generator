@@ -1,18 +1,14 @@
 import renderMathInElement from 'katex/contrib/auto-render'
 import { useEffect, useMemo, useRef } from 'react'
-import { sanitizeLatex } from '../lib/latex'
+import { fixMathSpan, MACROS, sanitizeLatex } from '../lib/latex'
 import 'katex/dist/katex.min.css'
 
 const DELIMITERS = [
   { left: '$$', right: '$$', display: true },
+  { left: '\\[', right: '\\]', display: true },
+  { left: '\\(', right: '\\)', display: false },
   { left: '$', right: '$', display: false },
 ]
-
-const MACROS = {
-  '\\textsc': '\\text{#1}',
-  '\\overarc': '\\widehat{#1}',
-  '\\ds': '',
-}
 
 interface AutoMathProps {
   /** Text/HTML that may contain `$…$` or `$$…$$` math. Rendered as raw HTML (parity with legacy innerHTML). */
@@ -34,8 +30,10 @@ export function AutoMath({ html, children, className }: AutoMathProps) {
       renderMathInElement(ref.current, {
         throwOnError: false,
         trust: true,
+        strict: 'ignore',
         macros: MACROS,
         delimiters: DELIMITERS,
+        preProcess: fixMathSpan,
       })
     }
   }, [content])

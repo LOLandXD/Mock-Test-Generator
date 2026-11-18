@@ -963,11 +963,19 @@ export function translate(lang: Lang, key: string, ...args: (string | number)[])
   return s
 }
 
+/** Strip a leading emoji token (legacy `tip()`) — for labels that already sit next to a Feather icon. */
+export function stripLeadingEmoji(s: string): string {
+  const i = s.indexOf(' ')
+  return i < 0 ? s : s.slice(i + 1)
+}
+
 export interface I18nValue {
   lang: Lang
   setLang: (lang: Lang) => void
   /** Translate `key`, substituting {0}, {1} … placeholders. */
   t: (key: string, ...args: (string | number)[]) => string
+  /** Like t(), but strips a leading emoji token. */
+  tip: (key: string) => string
 }
 
 export const I18nContext = createContext<I18nValue | null>(null)
