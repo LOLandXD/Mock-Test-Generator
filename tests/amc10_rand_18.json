@@ -1,0 +1,437 @@
+{
+ "id": "amc10_rand_18",
+ "competition": "AMC 10",
+ "category": "Math",
+ "bank_version": 1,
+ "title": "AMC 10 — Random Mock #18 · 2026-11-14 16:25",
+ "instructions": "25 questions · 75 minutes · No calculator. 150 points total.",
+ "time_limit_min": 75,
+ "total_points": 150,
+ "questions": [
+  {
+   "n": 1,
+   "source": "2014 AMC 10A Problem 1",
+   "question": "What is $10\\cdot\\left(\\tfrac{1}{2}+\\tfrac{1}{5}+\\tfrac{1}{10}\\right)^{-1}?$",
+   "choices": {
+    "A": "3",
+    "B": "8",
+    "C": "$\\frac{25}{2}$",
+    "D": "$\\frac{170}{3}$",
+    "E": "170"
+   },
+   "answer": "C",
+   "solution": "We have $$10\\cdot\\left(\\frac{1}{2}+\\frac{1}{5}+\\frac{1}{10}\\right)^{-1}$$\nMaking the denominators equal gives\n$$\\implies 10\\cdot\\left(\\frac{5}{10}+\\frac{2}{10}+\\frac{1}{10}\\right)^{-1}$$\n$$\\implies 10\\cdot\\left(\\frac{5+2+1}{10}\\right)^{-1}$$\n$$\\implies 10\\cdot\\left(\\frac{8}{10}\\right)^{-1}$$\n$$\\implies 10\\cdot\\left(\\frac{4}{5}\\right)^{-1}$$\n$$\\implies 10\\cdot\\frac{5}{4}$$\n$$\\implies \\frac{50}{4}$$\nFinally, simplifying gives\n$$\\implies \\boxed{\\textbf{(C)}\\ \\frac{25}{2}}$$",
+   "type": "multiple_choice",
+   "points": 6,
+   "figure": null
+  },
+  {
+   "n": 2,
+   "source": "2008 AMC 10A Problem 2",
+   "question": "A square is drawn inside a rectangle. The ratio of the width of the rectangle to a side of the square is $2:1$. The ratio of the rectangle's length to its width is $2:1$. What percent of the rectangle's area is inside the square?",
+   "choices": {
+    "A": "12.5",
+    "B": "25",
+    "C": "50",
+    "D": "75",
+    "E": "87.5"
+   },
+   "answer": "A",
+   "solution": "Since they are asking for the \"ratio\" of two things, we can say that the side of the square is anything that we want. So if we say that it is $1$, then the width of the rectangle is $2$, and the length is $4$, thus making the total area of the rectangle $8$. The area of the square is just $1$. So the percent of the rectangle's area inside the square is $\\frac{1}{8} \\times 100 = 12.5 \\longrightarrow \\fbox{A}$",
+   "type": "multiple_choice",
+   "points": 6,
+   "figure": null
+  },
+  {
+   "n": 3,
+   "source": "2006 AMC 10B Problem 3",
+   "question": "A football game was played between two teams, the Cougars and the Panthers. The two teams scored a total of $34$ points, and the Cougars won by a margin of $14$ points. How many points did the Panthers score?",
+   "choices": {
+    "A": "10",
+    "B": "14",
+    "C": "17",
+    "D": "20",
+    "E": "24"
+   },
+   "answer": "A",
+   "solution": "Let $x$ be the number of points scored by the Cougars, and $y$ be the number of points scored by the Panthers. The problem is asking for the value of $y$. \n\n$x+y = 34 $ \\\\\n$x-y = 14 $ \\\\\n$2x = 48 $ \\\\\n$x = 24 $ \\\\\n\nThe answer is $\\boxed{\\textbf{(A) } 10}$",
+   "type": "multiple_choice",
+   "points": 6,
+   "figure": null
+  },
+  {
+   "n": 4,
+   "source": "2017 AMC 10A Problem 4",
+   "question": "Mia is \"helping\" her mom pick up $30$ toys that are strewn on the floor. Mia’s mom manages to put $3$ toys into the toy box every $30$ seconds, but each time immediately after those $30$ seconds have elapsed, Mia takes $2$ toys out of the box. How much time, in minutes, will it take Mia and her mom to put all $30$ toys into the box for the first time?",
+   "choices": {
+    "A": "13.5",
+    "B": "14",
+    "C": "14.5",
+    "D": "15",
+    "E": "15.5"
+   },
+   "answer": "B",
+   "solution": "Every $30$ seconds, $3$ toys are put in the box and $2$ toys are taken out, so the number of toys in the box increases by $3-2=1$ every $30$ seconds. Then after $27 \\times 30 = 810$ seconds (or $13 \\frac{1}{2}$ minutes), there are $27$ toys in the box. Mia's mom will then put the remaining $3$ toys into the box after $30$ more seconds, so the total time taken is $27\\times 30+30=840$ seconds, or $\\boxed{(\\textbf{B})\\ 14}$ minutes.\n\nNote: During the last time Mia's mom will complete picking up the $30$ toys (before Mia can take $2$ out) which is the reason that you calculate up to $27$ and then the rest.",
+   "type": "multiple_choice",
+   "points": 6,
+   "figure": null
+  },
+  {
+   "n": 5,
+   "source": "2023 AMC 10B Problem 5",
+   "question": "Maddy and Lara see a list of numbers written on a blackboard. Maddy adds $3$ to each number in the list and finds that the sum of her new numbers is $45$. Lara multiplies each number in the list by $3$ and finds that the sum of her new numbers is also $45$. How many numbers are written on the blackboard?",
+   "choices": {
+    "A": "10",
+    "B": "5",
+    "C": "6",
+    "D": "8",
+    "E": "9"
+   },
+   "answer": "A",
+   "solution": "Let there be $n$ numbers in the list of numbers, and let their sum be $S$. Then we have the following\n\n$$S+3n=45$$\n\n$$3S=45$$\n\nFrom the second equation, $S=15$. So, $15+3n=45$ $\\Rightarrow$ $n=\\boxed{\\textbf{(A) }10}.$",
+   "type": "multiple_choice",
+   "points": 6,
+   "figure": null
+  },
+  {
+   "n": 6,
+   "source": "2010 AMC 10A Problem 6",
+   "question": "For positive numbers $x$ and $y$ the operation $\\spadesuit (x,y)$ is defined as \n\n$$\\spadesuit (x,y) = x-\\dfrac{1}{y}$$\n\nWhat is $\\spadesuit (2,\\spadesuit (2,2))$?",
+   "choices": {
+    "A": "$\\dfrac{2}{3}$",
+    "B": "1",
+    "C": "$\\dfrac{4}{3}$",
+    "D": "$\\dfrac{5}{3}$",
+    "E": "2"
+   },
+   "answer": "C",
+   "solution": "$\\spadesuit (2,2) =2-\\frac{1}{2} =\\frac{3}{2}$. Then, $\\spadesuit \\left(2,\\frac{3}{2}\\right)$ is $2-\\frac{1}{\\frac{3}{2}} = 2- \\frac{2}{3} = \\frac{4}{3}$\nThe answer is $\\boxed{C}$",
+   "type": "multiple_choice",
+   "points": 6,
+   "figure": null
+  },
+  {
+   "n": 7,
+   "source": "2000 AMC 10 Problem 7",
+   "question": "In rectangle $ABCD$, $AD=1$, $P$ is on $\\overline{AB}$, and $\\overline{DB}$ and $\\overline{DP}$ trisect $\\angle ADC$.  What is the perimeter of $\\triangle BDP$?",
+   "choices": {
+    "A": "$3+\\frac{\\sqrt{3}}{3}$",
+    "B": "$2+\\frac{4\\sqrt{3}}{3}$",
+    "C": "$2+2\\sqrt{2}$",
+    "D": "$\\frac{3+3\\sqrt{5}}{2}$",
+    "E": "$2+\\frac{5\\sqrt{3}}{3}$"
+   },
+   "answer": "B",
+   "solution": "After computing $\\overline{BP} = \\frac{2\\sqrt{3}}{3},$ observe that triangle $\\triangle BPD$ is isosceles with $\\angle DPB = \\angle BPD.$ Therefore, using $120 - 30 - 30$ triangle properties, we see that the perimeter is just $(2+ \\sqrt{3}) \\cdot \\frac{2\\sqrt{3}}{3} = \\boxed{\\textbf{(B) }  2+\\frac{4\\sqrt{3}}{3}}.$",
+   "type": "multiple_choice",
+   "points": 6,
+   "figure": null
+  },
+  {
+   "n": 8,
+   "source": "2004 AMC 10B Problem 8",
+   "question": "Minneapolis-St. Paul International Airport is $8$ miles southwest of downtown St. Paul and $10$ miles southeast of downtown Minneapolis. Which of the following is closest to the number of miles between downtown St. Paul and downtown Minneapolis?",
+   "choices": {
+    "A": "13",
+    "B": "14",
+    "C": "15",
+    "D": "16",
+    "E": "17"
+   },
+   "answer": "A",
+   "solution": "The directions \"southwest\" and \"southeast\" are orthogonal. Thus the described situation is a right triangle with legs $8$ miles and $10$ miles long. The hypotenuse length is $\\sqrt{8^2 + 10^2}\\approx12.8$, and thus the answer is $\\boxed{\\mathrm{(A)}\\ 13}$.\n\nWithout a calculator one can note that $8^2+10^2=164<169=13^2\\Rightarrow\\boxed{\\mathrm{(A)}\\ 13}$.",
+   "type": "multiple_choice",
+   "points": 6,
+   "figure": null
+  },
+  {
+   "n": 9,
+   "source": "2002 AMC 10P Problem 9",
+   "question": "The function $f$ is given by the table\n\n\n\n $\\hline$ \n $x  1  2  3  4  5 $ & 5 \\\\ \n $\\hline$\n $f(x)  4  1  3  5  2 $ & 2 \\\\\n $\\hline$\n\n\n\nIf $u_0=4$ and $u_{n+1} = f(u_n)$ for $n \\ge 0$, find $u_{2002}$",
+   "choices": {
+    "A": "1",
+    "B": "2",
+    "C": "3",
+    "D": "4",
+    "E": "5"
+   },
+   "answer": "B",
+   "solution": "We can guess that the series given by the problem is periodic in some way. Starting off, $u_0=4$ is given. $u_1=u_{0+1}=f(u_0)=f(4)=5,$ so $u_1=5.$ $u_2=u_{1+1}=f(u_1)=f(5)=2,$ so $u_2=2.$  $u_3=u_{2+1}=f(u_2)=f(2)=1,$ so $u_3=1.$ $u_4=u_{3+1}=f(u_3)=f(1)=4,$ so $u_4=4.$ Plugging in $4$ will give us $5$ as found before, and plugging in $5$ will give $2$ and so on. This means that our original guess of the series being periodic was correct. Summing up our findings in a nice table,\n\n\n\n $\\hline$ \n n & 0 & 1 & 2 & 3 & 4 & ...\\\\ \n $\\hline$\n un & 4 & 5 & 2 & 1 & 4 & ...\\\\\n $\\hline$\n\n\n\nin which the next $u_n$ is found by simply plugging in the number from the last box into $f(x).$ The function is periodic every $4$ terms. $2002 \\equiv 2\\pmod{4}$, and counting $4$ starting from $u_1$ will give us our answer of $\\boxed{\\textbf{(B) } 2}$.",
+   "type": "multiple_choice",
+   "points": 6,
+   "figure": null
+  },
+  {
+   "n": 10,
+   "source": "2009 AMC 10B Problem 10",
+   "question": "A flagpole is originally $5$ meters tall. A hurricane snaps the flagpole at a point $x$ meters above the ground so that the upper part, still attached to the stump, touches the ground $1$ meter away from the base. What is $x$?",
+   "choices": {
+    "A": "2.0",
+    "B": "2.1",
+    "C": "2.2",
+    "D": "2.3",
+    "E": "2.4"
+   },
+   "answer": "E",
+   "solution": "The broken flagpole forms a right triangle with legs $1$ and $x$, and hypotenuse $5-x$. The Pythagorean theorem now states that $1^2 + x^2 = (5-x)^2$, hence $10x = 24$, and $x=\\boxed{\\text{(E)}\\ 2.4}$.\n\n(Note that the resulting triangle is the well-known $5-12-13$ right triangle, scaled by $1/5$.)",
+   "type": "multiple_choice",
+   "points": 6,
+   "figure": null
+  },
+  {
+   "n": 11,
+   "source": "2011 AMC 10A Problem 11",
+   "question": "Square $EFGH$ has one vertex on each side of square $ABCD$.  Point $E$ is on $AB$ with $AE=7\\cdot EB$.  What is the ratio of the area of $EFGH$ to the area of $ABCD$?",
+   "choices": {
+    "A": "$\\,\\frac{49}{64}$",
+    "B": "$\\,\\frac{25}{32}$",
+    "C": "$\\,\\frac78$",
+    "D": "$\\,\\frac{5\\sqrt{2}}{8}$",
+    "E": "$\\,\\frac{\\sqrt{14}}{4}$"
+   },
+   "answer": "B",
+   "solution": "Let $8$ be the length of the sides of square $ABCD$. Then, the length of one of the sides of square $EFGH$ is $\\sqrt{7^2+1^2}=\\sqrt{50}$, and hence the ratio in the areas is $\\frac{\\sqrt{50}^2}{8^2}=\\frac{50}{64} = \\boxed{\\frac{25}{32} \\ \\mathbf{(B)}}$.",
+   "type": "multiple_choice",
+   "points": 6,
+   "figure": null
+  },
+  {
+   "n": 12,
+   "source": "2019 AMC 10B Problem 12",
+   "question": "What is the greatest possible sum of the digits in the base-seven representation of a positive integer less than $2019$?",
+   "choices": {
+    "A": "11",
+    "B": "14",
+    "C": "22",
+    "D": "23",
+    "E": "27"
+   },
+   "answer": "C",
+   "solution": "Observe that $2019_{10} = 5613_7$. To maximize the sum of the digits, we want as many $6$s as possible (since $6$ is the highest value in base $7$), and this will occur with either of the numbers $4666_7$ or $5566_7$. Thus, the answer is $4+6+6+6 = 5+5+6+6 = \\boxed{\\textbf{(C) }22}$.",
+   "type": "multiple_choice",
+   "points": 6,
+   "figure": null
+  },
+  {
+   "n": 13,
+   "source": "2011 AMC 10A Problem 13",
+   "question": "How many even integers are there between $200$ and $700$ whose digits are all different and come from the set $\\left\\{1,2,5,7,8,9\\right\\}$?",
+   "choices": {
+    "A": "$\\,12$",
+    "B": "$\\,20$",
+    "C": "$\\,72$",
+    "D": "$\\,120$",
+    "E": "$\\,200$"
+   },
+   "answer": "A",
+   "solution": "We split up into cases of the hundreds digits being $2$ or $5$. If the hundred digits is $2$, then the units digits must be $8$ in order for the number to be even and then there are $4$ remaining choices ($1,5,7,9$) for the tens digit, giving $1 \\times 1 \\times 4=4$ possibilities. Similarly, there are $1 \\times 2 \\times 4=8$ possibilities for the $5$ case, giving a total of $4+8=\\boxed{\\ \\mathbf{(A)} 12}$ possibilities.",
+   "type": "multiple_choice",
+   "points": 6,
+   "figure": null
+  },
+  {
+   "n": 14,
+   "source": "2017 AMC 10A Problem 14",
+   "question": "Every week Roger pays for a movie ticket and a soda out of his allowance. Last week, Roger's allowance was $A$ dollars. The cost of his movie ticket was $20\\%$ of the difference between $A$ and the cost of his soda, while the cost of his soda was $5\\%$ of the difference between $A$ and the cost of his movie ticket. To the nearest whole percent, what fraction of $A$ did Roger pay for his movie ticket and soda?",
+   "choices": {
+    "A": "$9\\%$",
+    "B": "$19\\%$",
+    "C": "$22\\%$",
+    "D": "$23\\%$",
+    "E": "$25\\%$"
+   },
+   "answer": "D",
+   "solution": "Let $m$ = cost of movie ticket\nLet $s$  = cost of soda\n\nWe can create two equations:\n\n$$m = \\frac{1}{5}(A - s)$$\n$$s  = \\frac{1}{20}(A - m)$$\n\nSubstituting we get: \n\n$$m = \\frac{1}{5}(A - \\frac{1}{20}(A - m))$$\nwhich yields:\n$$m = \\frac{19}{99}A$$\n\nNow we can find s and we get:\n\n$$s = \\frac{4}{99}A$$\n\nSince we want to find what fraction of $A$ did Roger pay for his movie ticket and soda, we add $m$ and $s$ to get:\n\n$$\\frac{19}{99}A + \\frac{4}{99}A \\implies \\boxed{\\textbf{(D)}\\ 23\\%}$$",
+   "type": "multiple_choice",
+   "points": 6,
+   "figure": null
+  },
+  {
+   "n": 15,
+   "source": "2015 AMC 10A Problem 15",
+   "question": "Consider the set of all fractions $\\frac{x}{y}$, where $x$ and $y$ are relatively prime positive integers. How many of these fractions have the property that if both numerator and denominator are increased by $1$, the value of the fraction is increased by $10\\%$?",
+   "choices": {
+    "A": "0",
+    "B": "1",
+    "C": "2",
+    "D": "3",
+    "E": "$\\text{infinitely many}$"
+   },
+   "answer": "B",
+   "solution": "You can create the equation $\\frac{x+1}{y+1}=\\frac{11x}{10y}$\n\nCross multiplying and combining like terms gives $xy + 11x - 10y = 0$.\n\nThis can be factored into $(x - 10)(y + 11) = -110$.\n\n$x$ and $y$ must be positive, so $x > 0$ and $y > 0$, so $x - 10> -10$ and $y + 11 > 11$.\n\nUsing the factors of 110, we can get the factor pairs: $(-1, 110),$ $(-2, 55),$ and $(-5, 22).$\n\nBut we can't stop here because $x$ and $y$ must be relatively prime.\n\n$(-1, 110)$ gives $x = 9$ and $y = 99$. $9$ and $99$ are not relatively prime, so this doesn't work.\n\n$(-2, 55)$ gives $x = 8$ and $y = 44$. This doesn't work.\n\n$(-5, 22)$ gives $x = 5$ and $y = 11$. This does work.\n\nWe found one valid solution so the answer is $\\boxed{\\textbf{(B) }1}$.",
+   "type": "multiple_choice",
+   "points": 6,
+   "figure": null
+  },
+  {
+   "n": 16,
+   "source": "2024 AMC 10B Problem 16",
+   "question": "Jerry likes to play with numbers. One day, he wrote all the integers from $1$ to $2024$ on the whiteboard. Then he repeatedly chose four numbers on the whiteboard, erased them, and replaced them by either their sum or their product. (For example, Jerry's first step might have been to erase $1$, $2$, $3$, and $5$, and then write either $11$, their sum, or $30$, their product, on the whiteboard.) After repeatedly performing this operation, Jerry noticed that all the remaining numbers on the whiteboard were odd. What is the maximum possible number of integers on the whiteboard at that time?",
+   "choices": {
+    "A": "1010",
+    "B": "1011",
+    "C": "1012",
+    "D": "1013",
+    "E": "1014"
+   },
+   "answer": "A",
+   "solution": "Consider the numbers as $1,0,1,0,...,1,0$. Note that the number of odd integers is monotonously decreasing.\n\nWe need to get rid of $1012$ $0$'s, so we either add or multiply four $0$s together to get $1012\\rightarrow 253 \\rightarrow 63+1=64 \\rightarrow 16 \\rightarrow 4 \\rightarrow 1.$\n\nTo get rid of the final $0$, we need to consume three other $1$'s to result in one $1$. Thus the answer is $1012-2=\\boxed{\\textbf{(A) } 1010 }$,",
+   "type": "multiple_choice",
+   "points": 6,
+   "figure": null
+  },
+  {
+   "n": 17,
+   "source": "2020 AMC 10B Problem 17",
+   "question": "There are $10$ people standing equally spaced around a circle. Each person knows exactly $3$ of the other $9$ people: the $2$ people standing next to her or him, as well as the person directly across the circle. How many ways are there for the $10$ people to split up into $5$ pairs so that the members of each pair know each other?",
+   "choices": {
+    "A": "11",
+    "B": "12",
+    "C": "13",
+    "D": "14",
+    "E": "15"
+   },
+   "answer": "C",
+   "solution": "Consider the $10$ people to be standing in a circle, where two people opposite of each other form a diameter of the circle.\n\nLet us use casework on the number of pairs that form a diameter of the circle.\n\nCase 1: $0$ diameters\n\nThere are $2$ ways: either $1$ pairs with $2$, $3$ pairs with $4$, and so on or $10$ pairs with $1$, $2$ pairs with $3$, etc. So $\\boxed{\\textbf{2}}$ cases.\n\nCase 2: $1$ diameter\n\nThere are $5$ possible diameters to draw (everyone else pairs with the person next to them). So $\\boxed{\\textbf{5}}$ cases.\n\nNote that there cannot be $2$ diameters since there would be one person on either side that will not have a pair adjacent to them. The only scenario forced is when the two people on either side would be paired up across a diameter. Thus, a contradiction will arise.\n\nCase 3: $3$ diameters\n\nThere are $5$ possible sets of $3$ diameters to draw.\nNotice we are technically choosing the number of ways to choose a pair of two diameters that are neighbors to each other. This means we can choose the first diameter in the pair, and have only two diameters to choose from for the second in the pair. This means we have $5 \\cdot 2=10$ possibilities for choosing 5 neighboring diameters. However, notice that there are duplicates, so we divide the $10$ possibilities by $2$ to get $\\boxed{\\textbf{5}}$.\n\nNote that there cannot be a case with $4$ diameters because then there would have to be $5$ diameters for the two remaining people as they have to be connected with a diameter. A contradiction arises.\n\nCase 4: $5$ diameters\n\nThere is only $\\boxed{\\textbf{1}}$ way to do this.\n\nThus, in total there are $2+5+5+1=\\boxed{\\textbf{(C) }13}$ possible ways.",
+   "type": "multiple_choice",
+   "points": 6,
+   "figure": null
+  },
+  {
+   "n": 18,
+   "source": "2015 AMC 10B Problem 18",
+   "question": "Johann has $64$ fair coins. He flips all the coins. Any coin that lands on tails is tossed again. Coins that land on tails on the second toss are tossed a third time. What is the expected number of coins that are now heads?",
+   "choices": {
+    "A": "32",
+    "B": "40",
+    "C": "48",
+    "D": "56",
+    "E": "64"
+   },
+   "answer": "D",
+   "solution": "Every time the coins are flipped, each of them has a $1/2$ probability of being tails. Doing this $3$ times, $1/8$ of them will be tails. $$64-64*1/8=\\$$ $$\\boxed{\\mathbf{(D)}\\ 56}\\$$.",
+   "type": "multiple_choice",
+   "points": 6,
+   "figure": null
+  },
+  {
+   "n": 19,
+   "source": "2017 AMC 10B Problem 19",
+   "question": "Let $ABC$ be an equilateral triangle. Extend side $\\overline{AB}$ beyond $B$ to a point $B'$ so that $BB'=3 \\cdot AB$. Similarly, extend side $\\overline{BC}$ beyond $C$ to a point $C'$ so that $CC'=3 \\cdot BC$, and extend side $\\overline{CA}$ beyond $A$ to a point $A'$ so that $AA'=3 \\cdot CA$. What is the ratio of the area of $\\triangle A'B'C'$ to the area of $\\triangle ABC$?",
+   "choices": {
+    "A": "9:1",
+    "B": "16:1",
+    "C": "25:1",
+    "D": "36:1",
+    "E": "37:1"
+   },
+   "answer": "E",
+   "solution": "Note that by symmetry, $\\triangle A'B'C'$ is also equilateral. Therefore, we only need to find one of the sides of $A'B'C'$ to determine the area ratio. WLOG, let $AB = BC = CA = 1$. Therefore, $BB' = 3$ and $BC' = 4$. Also, $\\angle B'BC' = 120^{\\circ}$, so by the Law of Cosines, $B'C' = \\sqrt{4^2 + 3^2 - 2\\cdot(4)(3)\\cos(120^\\circ)} = \\sqrt{16+9 - 24(-1/2)} = \\sqrt{37}$. Therefore, the answer is $(\\sqrt{37})^2 : 1^2 = \\boxed{\\textbf{(E) } 37:1}$\n\n$\\angle B'AC'$  is not equal to $120^{\\circ}$ but $\\angle B'BC' = 120^{\\circ}$",
+   "type": "multiple_choice",
+   "points": 6,
+   "figure": null
+  },
+  {
+   "n": 20,
+   "source": "2018 AMC 10A Problem 20",
+   "question": "A scanning code consists of a $7 \\times 7$ grid of squares, with some of its squares colored black and the rest colored white. There must be at least one square of each color in this grid of $49$ squares. A scanning code is called $\\textit{symmetric}$ if its look does not change when the entire square is rotated by a multiple of $90 {}^{\\circ}$ counterclockwise around its center, nor when it is reflected across a line joining opposite corners or a line joining midpoints of opposite sides. What is the total number of possible symmetric scanning codes?",
+   "choices": {
+    "A": "$\\text{ 510}$",
+    "B": "$\\text{ 1022}$",
+    "C": "$\\text{ 8190}$",
+    "D": "$\\text{ 8192}$",
+    "E": "$\\text{ 65,534}$"
+   },
+   "answer": "B",
+   "solution": "Imagine folding the scanning code along its lines of symmetry. There will be $10$ regions which you have control over coloring. Since we must subtract off $2$ cases for the all-black and all-white cases, the answer is $2^{10}-2=\\boxed{\\textbf{(B) } 1022.}$",
+   "type": "multiple_choice",
+   "points": 6,
+   "figure": null
+  },
+  {
+   "n": 21,
+   "source": "2018 AMC 10A Problem 21",
+   "question": "Which of the following describes the set of values of $a$ for which the curves $x^2+y^2=a^2$ and $y=x^2-a$ in the real $xy$-plane intersect at exactly $3$ points?",
+   "choices": {
+    "A": "$a=\\frac14$",
+    "B": "$\\frac14 < a < \\frac12$",
+    "C": "$a>\\frac14$",
+    "D": "$a=\\frac12$",
+    "E": "$a>\\frac12$"
+   },
+   "answer": "E",
+   "solution": "Substituting $y=x^2-a$ into $x^2+y^2=a^2$, we get\n$$x^2+(x^2-a)^2=a^2 \\implies x^2+x^4-2ax^2=0 \\implies x^2(x^2-(2a-1))=0$$\nSince this is a quartic, there are $4$ total roots (counting multiplicity). We see that $x=0$ always has at least one intersection at $(0,-a)$ (and is in fact a double root). \n\nThe other two intersection points have $x$ coordinates $\\pm\\sqrt{2a-1}$. We must have $2a-1> 0;$ otherwise we are in the case where the parabola lies entirely below the circle (tangent at the point $(0,-a)$). This only results in a single intersection point in the real coordinate plane. Thus, we see that $\\boxed{\\textbf{(E) }a>\\frac12}$.\n\n(projecteulerlover)",
+   "type": "multiple_choice",
+   "points": 6,
+   "figure": null
+  },
+  {
+   "n": 22,
+   "source": "2013 AMC 10A Problem 22",
+   "question": "Six spheres of radius $1$ are positioned so that their centers are at the vertices of a regular hexagon of side length $2$. The six spheres are internally tangent to a larger sphere whose center is the center of the hexagon.  An eighth sphere is externally tangent to the six smaller spheres and internally tangent to the larger sphere.  What is the radius of this eighth sphere?",
+   "choices": {
+    "A": "$\\sqrt2$",
+    "B": "$\\frac{3}{2}$",
+    "C": "$\\frac{5}{3}$",
+    "D": "$\\sqrt3$",
+    "E": "2"
+   },
+   "answer": "B",
+   "solution": "Set up an isosceles triangle between the center of the $8$th sphere and two opposite ends of the hexagon. Then set up another triangle between the point of tangency of the $7$th and $8$th spheres, and the points of tangency between the $7$th sphere and $2$ of the original spheres on opposite sides of the hexagon. Express each side length of the triangles in terms of $r$ (the radius of sphere $8$) and $h$ (the height of the first triangle). You can then use Pythagorean Theorem to set up two equations for the two triangles, and find the values of $h$ and $r$.\n\n$(1+r)^2=2^2+h^2$\n\n$(3\\sqrt{2})^2=3^2+(h+r)^2$\n\n$r = \\boxed{\\textbf{(B) }\\frac{3}{2}}$\n\nNote: We can easily tell that h = 3-r because the line connecting the centers of the two opposite spheres is a diameter of the largest sphere and so intersects the center of the largest sphere, so the middle of this line is the center of the largest sphere. From this we know that the center of the line connected to the top of the 8th sphere is 3 and the height therefore is 3-r",
+   "type": "multiple_choice",
+   "points": 6,
+   "figure": null
+  },
+  {
+   "n": 23,
+   "source": "2016 AMC 10B Problem 23",
+   "question": "In regular hexagon $ABCDEF$, points $W$, $X$, $Y$, and $Z$ are chosen on sides $\\overline{BC}$, $\\overline{CD}$, $\\overline{EF}$, and $\\overline{FA}$ respectively, so lines $AB$, $ZW$, $YX$, and $ED$ are parallel and equally spaced. What is the ratio of the area of hexagon $WCXYFZ$ to the area of hexagon $ABCDEF$?",
+   "choices": {
+    "A": "$\\frac{1}{3}$",
+    "B": "$\\frac{10}{27}$",
+    "C": "$\\frac{11}{27}$",
+    "D": "$\\frac{4}{9}$",
+    "E": "$\\frac{13}{27}$"
+   },
+   "answer": "C",
+   "solution": "We draw a diagram to make our work easier:\n\nAssume that $AB$ is of length $1$.  Therefore, the area of $ABCDEF$ is $\\frac{3\\sqrt 3}2$.  To find the area of $WCXYFZ$, we draw $\\overline{CF}$, and find the area of the trapezoids $WCFZ$ and $CXYF$.  \n\nFrom this, we know that $CF=2$.  We also know that the combined heights of the trapezoids is $\\frac{\\sqrt 3}3$, since $\\overline{ZW}$ and $\\overline{YX}$ are equally spaced, and the height of each of the trapezoids is $\\frac{\\sqrt 3}6$.  From this, we know $\\overline{ZW}$ and $\\overline{YX}$ are each $\\frac 13$ of the way from $\\overline{CF}$ to $\\overline{DE}$ and $\\overline{AB}$, respectively.  We know that these are both equal to $\\frac 53$.\n\nWe find the area of each of the trapezoids, which both happen to be $\\frac{11}6 \\cdot \\frac{\\sqrt 3}6=\\frac{11\\sqrt 3}{36}$, and the combined area is $\\frac{11\\sqrt 3}{18}$.\n\nWe find that $\\dfrac{\\frac{11\\sqrt 3}{18}}{\\frac{3\\sqrt 3}2}$ is equal to $\\frac{22}{54}=\\boxed{\\textbf{(C)}\\ \\frac{11}{27}}$.",
+   "type": "multiple_choice",
+   "points": 6,
+   "figure": null
+  },
+  {
+   "n": 24,
+   "source": "2025 AMC 10A Problem 24",
+   "question": "Call a positive integer ''fair'' if no digit is used more than once, it has no $0$s, and no digit is adjacent to two greater digits. For example, $196, 23$ and $12463$ are fair, but $1546, 320,$ and $34321$ are not. How many fair positive integers are there?",
+   "choices": {
+    "A": "511",
+    "B": "2584",
+    "C": "9841",
+    "D": "17711",
+    "E": "19682"
+   },
+   "answer": "C",
+   "solution": "Let $f(n)$ be the number of fair integers given an arbitrary set of $n$ digits. Let $a$ be the smallest of these digits. Notice that $a$ is either the first or last digit, as if it were any other digit, the two digits surrounding it would both be greater. Then, notice that if the remaining $n-1$ slots form a fair number, so does the number when $a$ is appended. Therefore, $f(n) = 2f(n-1)$. From here, we may proceed with the calculation in Solution $1$ to get the answer of $\\boxed {\\text {(C) } 9841}$",
+   "type": "multiple_choice",
+   "points": 6,
+   "figure": null
+  },
+  {
+   "n": 25,
+   "source": "2004 AMC 10A Problem 25",
+   "question": "Three mutually tangent spheres of radius $1$ rest on a horizontal plane. A sphere of radius $2$ rests on them. What is the distance from the plane to the top of the larger sphere?",
+   "choices": {
+    "A": "$3 + \\frac {\\sqrt {30}}{2}$",
+    "B": "$3 + \\frac {\\sqrt {69}}{3}$",
+    "C": "$3 + \\frac {\\sqrt {123}}{4}$",
+    "D": "$\\frac {52}{9}$",
+    "E": "$3 + 2\\sqrt2$"
+   },
+   "answer": "B",
+   "solution": "Connect the centers of the spheres.  Note that the resulting prism is a tetrahedron with base lengths of 2 and side lengths of 3.  Drop a height from the top of the tetrahedron to the centroid of its equilateral triangle base.  Using the Pythagorean Theorem, it is easy to see that the circumradius of the base is $ \\dfrac { 2 \\sqrt {3 } } {3} $.  We can use PT again to find the height of the tetrahedron given its base's circumradius and it's leg lengths.  Finally, we add the distance from the top of the tetrahedron to the top of the sphere of radius 2 and the distance from the bottom of the ground to get an answer of $\\boxed{3 + \\dfrac{\\sqrt{69}}{3}}$.",
+   "type": "multiple_choice",
+   "points": 6,
+   "figure": null
+  }
+ ]
+}

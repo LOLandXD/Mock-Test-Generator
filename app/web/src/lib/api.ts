@@ -25,6 +25,12 @@ export interface Bank {
   tests_remaining?: number
   tests_total?: number
   real?: boolean
+  /** Bank versions this competition can be generated from (1 = classic, 2 = figure bank). */
+  versions?: number[]
+  /** Eligible questions in the figure bank (0 when that bank is not installed). */
+  v2_variants?: number
+  /** How many of those questions carry a figure. */
+  v2_figures?: number
 }
 
 export interface TestSummary {
@@ -35,10 +41,50 @@ export interface TestSummary {
   time_limit_min?: number | null
 }
 
+export interface WorksheetQuestion {
+  n: number
+  question: string
+  choices: string[]
+  answer: string
+  solution: string
+  points: number
+}
+
+export interface Worksheet {
+  id: string
+  title: string
+  owner: string
+  created_at: string
+  questions: WorksheetQuestion[]
+  total_points: number
+}
+
+export interface WorksheetSummary {
+  id: string
+  title: string
+  n_questions: number
+  created_at: string
+}
+
+export interface PracticeLevelStats {
+  best_pct: number
+  best_time: number | null
+  sessions: number
+  streak: number
+}
+
+export type PracticeStats = Record<string, Record<string, PracticeLevelStats>>
+
 export interface Announcement {
   title?: string
   date?: string
   body?: string
+}
+
+export interface ResultDetail {
+  n: number
+  given: string
+  ok: boolean
 }
 
 export interface TestResult {
@@ -49,6 +95,7 @@ export interface TestResult {
   total: number
   answered: number
   duration_s?: number
+  details?: ResultDetail[]
   submitted_at: string
   user: string
 }
@@ -189,6 +236,118 @@ async function request<T>(path: string, opts: RequestOptions = {}): Promise<T> {
 
 const post = <T>(path: string, body?: unknown) => request<T>(path, { method: 'POST', body })
 
+export interface TaxonomyNode {
+  en: string
+  zh: string
+  /** Depth in the taxonomy tree: 1 = domain, 2 = topic, 3 = tag. */
+  level: number
+}
+
+/** Label map for the topic taxonomy; questions reference these ids. */
+export interface Taxonomy {
+  id: string
+  version?: string
+  name?: { en?: string; zh?: string }
+  nodes: Record<string, TaxonomyNode>
+}
+
+/** One question as returned by the bank browser (`GET /api/questions`). */
+export interface QuestionRow {
+  /** Stable "slug:version:qid" key for React lists. */
+  id: string
+  qid: string
+  /** Bank file stem, e.g. `amc12_A` or `amc12` for the v2 figure bank. */
+  bank: string
+  slug: string
+  /** 1 = classic bank, 2 = figure bank. */
+  version: number
+  /** Display name from COMP_META, e.g. `AMC 12`. */
+  competition: string
+  set: string
+  position: number | null
+  source: string
+  type: string
+  points: number | null
+  question: string
+  question_zh: string
+  choices: string[]
+  answer: string
+  solution: string
+  solution_zh: string
+  /** Topic id (taxonomy) the classifier picked, e.g. `algebra.substitution`. */
+  primary: string | null
+  /** Level-1 domain of `primary`. */
+  domain: string | null
+  /** All topic ids this question is tagged with (primary first, roughly). */
+  tags: string[]
+  /** Difficulty on the amc20 scale (20 = average AMC 12 #25); null when unclassified. */
+  level: number | null
+  band: string | null
+  has_figure: boolean
+  figure: { src?: string; alt?: string; width?: number; height?: number; kind?: string } | null
+  has_solution: boolean
+}
+
+export interface QuestionFacets {
+  all: number
+  competition: Record<string, number>
+  competition_labels: Record<string, string>
+  domain: Record<string, number>
+  level: Record<string, number>
+  type: Record<string, number>
+}
+
+export interface QuestionPage {
+  total: number
+  limit: number
+  offset: number
+  counts: QuestionFacets
+  items: QuestionRow[]
+}
+
+export interface QuestionQuery {
+  q?: string
+  comp?: string
+  v?: string
+  domain?: string
+  topic?: string
+  level_min?: string
+  level_max?: string
+  type?: string
+  figure?: boolean
+  classified?: boolean
+  sort?: string
+  limit?: number
+  offset?: number
+}
+
+/** One row of reports.jsonl, as served by GET /api/reports. */
+export interface ReportRow {
+  id: string
+  qid: string
+  reason: string
+  note?: string
+  bank?: string
+  version?: number
+  source?: string
+  competition?: string
+  user?: string | null
+  created_at?: string
+  status?: string
+}
+
+/** Payload of POST /api/report; reason must be one of the server's REPORT_REASONS. */
+export interface ReportBody {
+  qid: string
+  reason: string
+  note?: string
+  bank?: string
+  version?: number
+  source?: string
+  competition?: string
+  question?: string
+}
+
 export const api = {
   // identity
   me: () => request<Me>('/api/me'),
@@ -201,12 +360,42 @@ export const api = {
     ),
   logout: () => post<{ ok: boolean }>('/api/logout'),
 
+  // WeChat scan-login (website app). configured=false until the admin sets
+  // WX_APPID/WX_APPSECRET on the server.
+  wechatLoginUrl: () => request<{ configured: boolean; url: string }>('/api/wechat/login-url'),
+
   // banks / tests / results
   banks: () => request<Bank[]>('/api/banks'),
+  taxonomy: () => request<Taxonomy>('/api/taxonomy'),
+  /** Bank browser: search + filter over every question on disk (paged). */
+  questions: (query: QuestionQuery = {}) => {
+    const params = new URLSearchParams()
+    const put = (key: string, value: string | number | boolean | undefined) => {
+      if (value === undefined || value === '') return
+      params.set(key, String(value))
+    }
+    put('q', query.q)
+    put('comp', query.comp)
+    put('v', query.v)
+    put('domain', query.domain)
+    put('topic', query.topic)
+    put('level_min', query.level_min)
+    put('level_max', query.level_max)
+    put('type', query.type)
+    put('figure', query.figure ? 1 : '')
+    put('classified', query.classified ? 1 : '')
+    put('sort', query.sort)
+    put('limit', query.limit)
+    put('offset', query.offset)
+    const qs = params.toString()
+    return request<QuestionPage>(`/api/questions${qs ? `?${qs}` : ''}`)
+  },
   tests: () => request<TestSummary[]>('/api/tests'),
   test: (id: string) => request<unknown>(`/api/test/${id}`),
-  generate: (slug: string, round?: string | null) =>
-    request<{ ok: boolean; id: string }>(`/api/generate/${slug}${round ? `/${encodeURIComponent(round)}` : ''}`),
+  generate: (slug: string, round?: string | null, version?: 1 | 2) =>
+    request<{ ok: boolean; id: string; bank_version?: number; fallback?: boolean }>(
+      `/api/generate/${slug}${round ? `/${encodeURIComponent(round)}` : ''}${version === 2 ? '?v=2' : ''}`,
+    ),
   results: () => request<TestResult[]>('/api/results'),
   stats: () => request<unknown>('/api/stats'),
   submitResult: (payload: {
@@ -217,7 +406,19 @@ export const api = {
     total: number
     answered: number
     duration_s: number
+    details?: ResultDetail[]
   }) => post<{ ok: boolean; guest?: boolean }>('/api/result', payload),
+
+  // question classification (teacher-authored: knowledge point, difficulty, key note)
+  classify: (testId: string) => request<{ items: Record<string, { kp?: string; diff?: number; note?: string }> }>(
+    `/api/test/${testId}/classify`,
+  ),
+  classifySave: (testId: string, items: Record<string, { kp?: string; diff?: number; note?: string }>) =>
+    post<{ ok: boolean }>(`/api/test/${testId}/classify`, { items }),
+
+  // build a practice test from the same banks at the positions you got wrong
+  practiceSimilar: (items: { test_id: string; n: number }[]) =>
+    post<{ ok: boolean; id: string }>('/api/practice_similar', { items }),
   announcements: () => request<{ announcements: Announcement[] }>('/api/announcements'),
 
   // friends / chat
@@ -250,4 +451,23 @@ export const api = {
   classCreate: (name: string, code: string) => post<{ ok: boolean; code: string }>('/api/class/create', { name, code }),
   classJoin: (code: string) => post<{ ok: boolean; name: string; school: string }>('/api/class/join', { code }),
   classReports: (code: string) => request<{ reports: ClassReport[] }>(`/api/class/${code}/reports`),
+
+  // worksheets (upload a txt/md/json file -> printable worksheet)
+  worksheetGenerate: (body: { filename: string; data_b64: string }) =>
+    post<Worksheet>('/api/worksheet/generate', body),
+  worksheet: (id: string) => request<Worksheet>(`/api/worksheet/${id}`),
+  worksheets: () => request<WorksheetSummary[]>('/api/worksheets'),
+
+  // practice drills
+  practice: () => request<PracticeStats | { guest: true }>('/api/practice'),
+  practiceSave: (body: { drill: string; level: string; pct: number; time_s: number; correct: number; total: number }) =>
+    post<{ ok: boolean; stats: PracticeStats; new_best_pct: boolean; new_best_time: boolean }>(
+      '/api/practice',
+      body,
+    ),
+
+  // "report a problem" on a question (stored in reports.jsonl on the server)
+  report: (body: ReportBody) => post<{ ok: boolean; id: string }>('/api/report', body),
+  /** Reports the signed-in user filed, newest first. */
+  reports: (limit = 50) => request<{ reports: ReportRow[]; count: number }>(`/api/reports?mine=1&limit=${limit}`),
 }

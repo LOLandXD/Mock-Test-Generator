@@ -24,22 +24,24 @@ category → chapter into `school_docs/` (indexed by `school_docs.json`), and st
 school can browse, preview, and download them.
 
 ```bash
-python app/server.py    # then open http://localhost:8000
+python app/server.py    # then open http://localhost:8020
 ```
 
 Full React UI (needs Node 20+):
 
 ```bash
-pwsh scripts/build.ps1     # or: sh scripts/build.sh   (cd app/web && npm ci && npm run build)
-python app/server.py       # http://localhost:8000 now serves the React app
+pwsh scripts/build.ps1     # or: scripts\build.bat / sh scripts/build.sh  (npm ci && npm run build)
+python app/server.py       # http://localhost:8020 now serves the React app
 ```
 
 Development:
 
 ```bash
-pwsh scripts/start.ps1 -Dev   # Python API on :8000 + Vite dev server (HMR) on :5173
-pwsh scripts/watch.ps1        # or: rebuild app/web/dist on every change
+pwsh scripts/start.ps1 -Dev   # or: scripts\start.bat dev  - API on :8020 + Vite (HMR) on :5173
+pwsh scripts/watch.ps1        # or: scripts\watch.bat  - rebuild app/web/dist on every change
 ```
+
+Port defaults to **8020** (8000 is often taken by another local dev server); set `MOCKTEST_PORT` to override it.
 
 Or, if you prefer a venv:
 
@@ -57,10 +59,18 @@ python -m venv .venv
 - `app/` — stdlib Python server (`server.py`) + static assets
 - `app/web/` — React + TypeScript front-end (Vite); build output `app/web/dist` is served by `server.py`
 - `app/static/index.html` — legacy vanilla-JS UI (fallback when `app/web/dist` isn't built)
-- `scripts/` — build/start/watch helpers (`.ps1` + `.sh`)
+- `scripts/` — build/start/watch helpers (`.ps1` + `.bat` + `.sh`)
 - `scraper/` — collection pipelines (AoPS wiki via browser, official PDFs/TeX/HTML)
 - `raw/` — raw downloads (wikitext, PDFs, TeX)
 - `data/` — clean per-competition JSON of AMC/AIME 真题
+- `docs/paper-format.md` — paper JSON format v1.1 (format/paper version numbers, figure slots for geometry, per-question classification)
+- `schema/` — JSON Schema for the paper format (`paper-1.1.schema.json`; `paper-1.0.schema.json` frozen)
+- `classifier/` — offline LLM classifier that fills `classification` + `difficulty`
+- `taxonomy/` — AMC topic taxonomy (`amc-v1.json`, 8 domains / 86 topics / 339 tags) referenced by each question's `classification`
+- `examples/` — format example (`demo_rand_01.json`: three `figure` states + three `classification` states)
+- `scripts/validate_paper.py` — validate papers, upgrade legacy papers to v1.1, recompute `content_hash`, report classification coverage
+- `scripts/migrate_banks.py` — migrate `bank/*.json` to `bank/*.v1.json` (adds `qid`, normalizes `type`, turns `has_diagram` into `figure` slots)
+- `scripts/apply_classification.py` — write classifier output back into `bank/v2/*.json` (stamps `classification` + `difficulty`, `--check` verifies, `--with-issues` copies the defect report into `x-issue`)
 
 ## Current banks (19 competitions, ~7,500 problems)
 
@@ -74,7 +84,7 @@ python -m venv .venv
 | HMMT | 353 real + variants (2011–2025, answers+solutions) | short answer |
 | SMT | 734 real (2011–2023, answers+solutions) | short answer |
 | PUMaC | 1149 real (2019–2025, solutions) | short answer/proof |
-| BMT | 589 real (2011–2025) | short answer |
+| BMT | 578 real (2019–2025, official answers+solutions) | short answer/proof |
 | CMIMC | 458 real (2016–2025, solutions) | short answer |
 | MATHCOUNTS | 95 real (2026 Chapter+State, answers+solutions) | short answer |
 | UKMT | 198 real (JMC/IMC/SMC 2023–2026, answers) | MC |

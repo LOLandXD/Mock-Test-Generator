@@ -5,6 +5,9 @@ bank_real/
 .playwright-mcp/
 results.jsonl
 *.png
+*.jpg
+*.jpeg
+*.webp
 scraper/aops_session.json
 __pycache__/
 .DS_Store
@@ -22,11 +25,30 @@ messages.jsonl
 friends.json
 classes.json
 class_reports.jsonl
+reports.jsonl
 school_docs.json
 school_docs/
 users/
+worksheets/
 pk/
 log
 *.log
 .vscode/
 Mock-Test-Generator/
+
+# agent screenshots - never commit, only the folder's README survives
+screenshots/*
+!screenshots/README.md
+
+# classifier run output - regenerable, never commit
+classifier/out/
+
+# local-only school crawler, credentials & crawled data - never commit
+shsid_credentials
+shsid_credentials.example
+raw/shsid/
+scraper/shsid_crawler.py
+scripts/shsid_watch.sh
+
+# WeChat open-platform credentials (website app) - local only
+wechat.json

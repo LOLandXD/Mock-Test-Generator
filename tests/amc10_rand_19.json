@@ -1,0 +1,437 @@
+{
+ "id": "amc10_rand_19",
+ "competition": "AMC 10",
+ "category": "Math",
+ "bank_version": 1,
+ "title": "AMC 10 — Random Mock #19 · 2026-11-14 16:28",
+ "instructions": "25 questions · 75 minutes · No calculator. 150 points total.",
+ "time_limit_min": 75,
+ "total_points": 150,
+ "questions": [
+  {
+   "n": 1,
+   "source": "2004 AMC 10A Problem 1",
+   "question": "You and five friends need to raise $1500$ dollars in donations for a charity, dividing the fundraising equally.  How many dollars will each of you need to raise?",
+   "choices": {
+    "A": "250",
+    "B": "300",
+    "C": "1500",
+    "D": "7500",
+    "E": "9000"
+   },
+   "answer": "A",
+   "solution": "There are $6$ people to split the $1500$ dollars among, so each person must raise $\\frac{1500}6=250$ dollars.  $\\Rightarrow\\boxed{\\mathrm{(A)}\\ 250}$",
+   "type": "multiple_choice",
+   "points": 6,
+   "figure": null
+  },
+  {
+   "n": 2,
+   "source": "2007 AMC 10B Problem 2",
+   "question": "Define the operation $\\star$ by $a \\star b = (a+b)b.$ What is $(3 \\star 5) - (5 \\star 3)?$",
+   "choices": {
+    "A": "-16",
+    "B": "-8",
+    "C": "0",
+    "D": "8",
+    "E": "16"
+   },
+   "answer": "E",
+   "solution": "Substitute and simplify.\n$$(3+5)5 - (5+3)3 = (3+5)2 = 8\\cdot2 = \\boxed{\\textbf{(E) }16}$$",
+   "type": "multiple_choice",
+   "points": 6,
+   "figure": null
+  },
+  {
+   "n": 3,
+   "source": "2009 AMC 10A Problem 3",
+   "question": "Which of the following is equal to $1 + \\frac {1}{1 + \\frac {1}{1 + 1}}$?",
+   "choices": {
+    "A": "$\\frac {5}{4}$",
+    "B": "$\\frac {3}{2}$",
+    "C": "$\\frac {5}{3}$",
+    "D": "2",
+    "E": "3"
+   },
+   "answer": "C",
+   "solution": "We compute:\n\n\n\n$1 + \\frac {1}{1 + \\frac {1}{1 + 1}}$\n&=\n$1 + \\frac {1}{1 + \\frac {1}{1 + 1}}$\n\\\\\n&=\n$1 + \\frac {1}{1 + \\frac 12}$\n\\\\\n&=\n$1 + \\frac {1}{\\frac 32}$\n\\\\\n&=\n$1 + \\frac 23$\n\\\\\n&=\n$\\frac 53$\n\n\n\nThis is choice $\\boxed{\\text{C}}$.\n\nInteresting sidenote: The continued fraction $1 + \\frac {1}{1 + \\frac {1}{1 + 1....}}$ is equal to the golden ratio, or $\\frac{1+\\sqrt{5}}{2}$.",
+   "type": "multiple_choice",
+   "points": 6,
+   "figure": null
+  },
+  {
+   "n": 4,
+   "source": "2002 AMC 10P Problem 4",
+   "question": "Which of the following numbers is a perfect square?",
+   "choices": {
+    "A": "$4^4 5^5 6^6$",
+    "B": "$4^4 5^6 6^5$",
+    "C": "$4^5 5^4 6^6$",
+    "D": "$4^6 5^4 6^5$",
+    "E": "$4^6 5^5 6^4$"
+   },
+   "answer": "C",
+   "solution": "For a positive integer to be a perfect square, all the primes in its prime factorization must have an even exponent. With a quick glance at the answer choices, we can eliminate options\n\n$\\textbf{(A)}$ because $5^5$ is an odd power\n\n$\\textbf{(B)}$ because $6^5 = 2^5 \\cdot 3^5$ and $3^5$ is an odd power\n\n$\\textbf{(D)}$ because $6^5 = 2^5 \\cdot 3^5$ and $3^5$ is an odd power, and\n\n$\\textbf{(E)}$ because $5^5$ is an odd power.\n\nThis leaves option $\\textbf{(C)},$ in which $4^5=(2^{2})^{5}=2^{10}$, and since $10, 4,$ and $6$ are all even, $\\textbf{(C)}$ is a perfect square. Thus, our answer is $\\boxed{\\textbf{(C) } 4^5 5^4 6^6}.$",
+   "type": "multiple_choice",
+   "points": 6,
+   "figure": null
+  },
+  {
+   "n": 5,
+   "source": "2019 AMC 10A Problem 5",
+   "question": "What is the greatest number of consecutive integers whose sum is $45?$",
+   "choices": {
+    "A": "9",
+    "B": "25",
+    "C": "45",
+    "D": "90",
+    "E": "120"
+   },
+   "answer": "D",
+   "solution": "We might at first think that the answer would be $9$, because $1+2+3 \\dots +n = 45$ when $n = 9$. But note that the problem says that they can be integers, not necessarily positive. Observe also that every term in the sequence $-44, -43, \\cdots, 44, 45$ cancels out except $45$.  Thus, the answer is, intuitively, $\\boxed{\\textbf{(D) } 90 }$ integers.\n\nThough impractical, a proof of maximality can proceed as follows:  Let the desired sequence of consecutive integers be $a, a+1, \\cdots, a+(N-1)$, where there are $N$ terms, and we want to maximize $N$.  Then the sum of the terms in this sequence is $aN + \\frac{(N-1)(N)}{2}=45$.  Rearranging and factoring, this reduces to $N(2a+N-1) = 90$.  Since $N$ must divide $90$, and we know that $90$ is an attainable value of the sum, $90$ must be the maximum.",
+   "type": "multiple_choice",
+   "points": 6,
+   "figure": null
+  },
+  {
+   "n": 6,
+   "source": "2005 AMC 10B Problem 6",
+   "question": "At the beginning of the school year, Lisa's goal was to earn an $A$ on at least $80\\%$ of her $50$ quizzes for the year.  She earned an $A$ on $22$ of the first $30$ quizzes.  If she is to achieve her goal, on at most how many of the remaining quizzes can she earn a grade lower than an $A$?",
+   "choices": {
+    "A": "1",
+    "B": "2",
+    "C": "3",
+    "D": "4",
+    "E": "5"
+   },
+   "answer": "B",
+   "solution": "Lisa's goal was to get an $A$ on $80\\% \\cdot 50 = 40$ quizzes.  She already has $A$'s on $22$ quizzes, so she needs to get $A$'s on $40-22=18$ more.  There are $50-30=20$ quizzes left, so she can afford to get less than an $A$ on $20-18=\\boxed{\\textbf{(B) }2}$ of them.\n\nHere, only the $A$'s matter... No complicated stuff!",
+   "type": "multiple_choice",
+   "points": 6,
+   "figure": null
+  },
+  {
+   "n": 7,
+   "source": "2008 AMC 10A Problem 7",
+   "question": "The fraction\n\n$$\\frac{\\left(3^{2008}\\right)^2-\\left(3^{2006}\\right)^2}{\\left(3^{2007}\\right)^2-\\left(3^{2005}\\right)^2}$$\nsimplifies to which of the following?",
+   "choices": {
+    "A": "1",
+    "B": "$\\frac{9}{4}$",
+    "C": "3",
+    "D": "$\\frac{9}{2}$",
+    "E": "9"
+   },
+   "answer": "E",
+   "solution": "Using Difference of Squares, $\\frac{(3^{2008})^{2}-(3^{2006})^{2}}{(3^{2007})^{2}-(3^{2005}){^2}}$ becomes\n\n$\\frac{(3^{2008}+3^{2006})(3^{2008}-3^{2006})}{(3^{2007}+3^{2005})(3^{2007}-3^{2005})}$\n\n$ = \\frac{3^{2006}(9+1) \\cdot 3^{2006}(9-1)}{3^{2005}(9+1) \\cdot 3^{2005}(9-1)}$\n\n$ = \\boxed{\\text{(E)}9}$",
+   "type": "multiple_choice",
+   "points": 6,
+   "figure": null
+  },
+  {
+   "n": 8,
+   "source": "2021 AMC 10A Problem 8",
+   "question": "When a student multiplied the number $66$ by the repeating decimal, \n$$\\underline{1}.\\underline{a} \\ \\underline{b} \\ \\underline{a} \\ \\underline{b}\\ldots=\\underline{1}.\\overline{\\underline{a} \\ \\underline{b}},$$ \nwhere $a$ and $b$ are digits, he did not notice the notation and just multiplied $66$ times $\\underline{1}.\\underline{a} \\ \\underline{b}.$ Later he found that his answer is $0.5$ less than the correct answer. What is the $2$-digit number $\\underline{a} \\ \\underline{b}?$",
+   "choices": {
+    "A": "15",
+    "B": "30",
+    "C": "45",
+    "D": "60",
+    "E": "75"
+   },
+   "answer": "E",
+   "solution": "It is known that $\\underline{0}.\\overline{\\underline{a} \\ \\underline{b}}=\\frac{\\underline{a} \\ \\underline{b}}{99}$ and $\\underline{0}.\\underline{a} \\ \\underline{b}=\\frac{\\underline{a} \\ \\underline{b}}{100}.$ \n\nLet $x=\\underline{a} \\ \\underline{b}.$ We have $$66\\biggl(1+\\frac{x}{99}\\biggr)-66\\biggl(1+\\frac{x}{100}\\biggr)=0.5.$$ Expanding and simplifying give $\\frac{x}{150}=0.5,$ so $x=\\boxed{\\textbf{(E) }75}.$",
+   "type": "multiple_choice",
+   "points": 6,
+   "figure": null
+  },
+  {
+   "n": 9,
+   "source": "2025 AMC 10B Problem 9",
+   "question": "How many ordered triples of integers $(x, y, z)$ satisfy the following system of inequalities?\n\n$-x-y-z\\leq -2$2\\\\\n$-x+y+z\\leq 2$2\\\\\n$x-y+z\\leq 2$2\\\\\n$x+y-z\\leq 2$2\n",
+   "choices": {
+    "A": "4",
+    "B": "8",
+    "C": "11",
+    "D": "15",
+    "E": "17"
+   },
+   "answer": "C",
+   "solution": "Simplifying the first inequality of the system, we have:\n$$\\begin{cases} x+y+z \\geq 2, \\\\ -x+y+z \\leq 2, \\\\ x-y+z \\leq 2, \\\\ x+y-z \\leq 2. \\end{cases}$$\nSubtracting the second inequality from the first now gives\n$$(x+y+z)-(-x+y+z) \\geq 2-2 \\iff 2x \\geq 0 \\iff x \\geq 0,$$ and so by symmetry in $x,y,z$ (i.e. similarly using the third and fourth inequalities), we also obtain $y,z \\geq 0$. Therefore, without loss of generality, we can let\n$$0 \\leq x \\leq y \\leq z.$$\nup to permutation. Also from the second inequality, we have $y+z \\leq 2+x$, so using $x \\leq y$, we deduce that\n$$y+z \\leq 2+x \\leq 2+y \\iff z \\leq 2.$$\n\nHence $0 \\leq x \\leq y \\leq z \\leq 2$, and now we divide into the possible cases for $x$:\n\nCase $1$: $x=0$.\nThen the first two inequalities become\n$$y+z \\geq 2, y+z \\leq 2 \\iff y+z=2,$$and because we have $x = 0 \\leq y \\leq z \\leq 2$, we deduce that $(y,z)$ is either $(0,2)$ or $(1,1)$.\n\nCase $2$: $x=1$. Then we have\n$$1+y+z \\geq 2 \\iff y+z \\geq 1,\\qquad -1+y+z \\leq 2 \\iff y+z \\leq 3.$$ As $x = 1 \\leq y \\leq z \\leq 2$, we can have $(y,z) = (1,1)$ or $(1,2)$.\n\nCase $3$: $x=2$. Then $x = 2 \\leq y \\leq z \\leq 2$, so the only possible combination is already $(y,z) = (2,2)$. The other inequalities become\n$$2+y+z \\geq 2 \\iff y+z \\geq 0,\\qquad -2+y+z \\leq 2 \\iff y+z \\leq 4,$$ which are also satisfied by $(y,z) = (2,2)$, meaning that $(x,y,z) = (2,2,2)$ is indeed a valid solution.\n\nThus, up to permutation, the possible triples $(x,y,z)$ are $(0,0,2),\\; (0,1,1),\\; (1,1,1),\\; (1,1,2),\\; \\text{and}\\; (2,2,2)$.\n\nFor each of these, we accordingly count the number of possible permutations (which will correspond to solutions $(x,y,z)$ to the original system of inequalities): $$\\frac{3!}{2!}+\\frac{3!}{2!}+\\frac{3!}{3!}+\\frac{3!}{2!}+\\frac{3!}{3!} = 3+3+1+3+1 = \\boxed{\\textbf{(C)}\\ 11}.$$",
+   "type": "multiple_choice",
+   "points": 6,
+   "figure": null
+  },
+  {
+   "n": 10,
+   "source": "2015 AMC 10A Problem 10",
+   "question": "How many rearrangements of $abcd$ are there in which no two adjacent letters are also adjacent letters in the alphabet?  For example, no such rearrangements could include either $ab$ or $ba$.",
+   "choices": {
+    "A": "0",
+    "B": "1",
+    "C": "2",
+    "D": "3",
+    "E": "4"
+   },
+   "answer": "C",
+   "solution": "The first thing one would want to do is place a possible letter that works and then stem off of it.  For example, if we start with an $a$, we can only place a $c$ or $d$ next to it.  Unfortunately, after that step, we can't do too much, since:\n\n$acbd$ is not allowed because of the $cb$, and $acdb$ is not allowed because of the $cd$. \n\nWe get the same problem if we start with a $d$, since a $b$ will have to end up in the middle, causing it to be adjacent to an $a$ or $c$.\n\nIf we start with a $b$, the next letter would have to be a $d$, and since we can put an $a$ next to it and then a $c$ after that, this configuration works.  The same approach applies if we start with a $c$.\n\nSo the solution must be the two solutions that were allowed, one starting from a $b$ and the other with a $c$, giving us:\n\n$$1 + 1 = \\boxed{\\textbf{(C)}\\ 2}.$$",
+   "type": "multiple_choice",
+   "points": 6,
+   "figure": null
+  },
+  {
+   "n": 11,
+   "source": "2009 AMC 10B Problem 11",
+   "question": "How many $7$-digit palindromes (numbers that read the same backward as forward) can be formed using the digits $2$, $2$, $3$, $3$, $5$, $5$, $5$?",
+   "choices": {
+    "A": "6",
+    "B": "12",
+    "C": "24",
+    "D": "36",
+    "E": "48"
+   },
+   "answer": "A",
+   "solution": "A seven-digit palindrome is a number of the form $\\overline{abcdcba}$. Clearly, $d$ must be $5$, as we have an odd number of fives. We are then left with $\\{a,b,c\\} = \\{2,3,5\\}$. There are $3!$ permutations of these three numbers, since each is reflected over the midpoint we only have to count the first there. Each of the $\\boxed{(A)6}$ permutations of the set $\\{2,3,5\\}$ will give us one palindrome.",
+   "type": "multiple_choice",
+   "points": 6,
+   "figure": null
+  },
+  {
+   "n": 12,
+   "source": "2003 AMC 10B Problem 12",
+   "question": "Al, Betty, and Clare split $\\\\$ 1000 among them to be invested in different ways. Each begins with a different amount. At the end of one year, they have a total of \\\\$ 1500$ dollars. Betty and Clare have both doubled their money, whereas Al has managed to lose $\\\\$100$ dollars. What was Al's original portion?",
+   "choices": {
+    "A": "\\\\$ 250",
+    "B": "\\\\$ 350",
+    "C": "\\\\$ 400",
+    "D": "\\\\$ 450",
+    "E": "\\\\$ 500"
+   },
+   "answer": "C",
+   "solution": "For this problem, we will have to write a three-variable equation, but not necessarily solve it. Let $a, b,$ and $c$ represent the original portions of Al, Betty, and Clare, respectively. At the end of one year, they each have $a-100, 2b,$ and $2c$. From this, we can write two equations. \n\n$$a+b+c=1000 \\implies 2a+2b+2c=2000$$\n$$(a-100)+2b+2c=1500 \\implies a+2b+2c=1600$$\n\nSince all we need to find is $a,$ subtract the second equation from the first equation to get $a=400.$ Al's original portion was \\boxed{(C)\\ \\\\$ 400}$$.",
+   "type": "multiple_choice",
+   "points": 6,
+   "figure": null
+  },
+  {
+   "n": 13,
+   "source": "2007 AMC 10B Problem 13",
+   "question": "Two circles of radius $2$ are centered at $(2,0)$ and at $(0,2).$ What is the area of the intersection of the interiors of the two circles?",
+   "choices": {
+    "A": "$\\pi -2$",
+    "B": "$\\frac{\\pi}{2}$",
+    "C": "$\\frac{\\pi \\sqrt{3}}{3}$",
+    "D": "$2(\\pi -2)$",
+    "E": "$\\pi$"
+   },
+   "answer": "D",
+   "solution": "You can find the area of half the intersection by subtracting the isosceles triangle in the sector from the whole sector. This sector is one-fourth of the area of the circle with radius $2,$ and the isosceles triangle is a right triangle. Therefore, the area of half the intersection is\n$$\\frac{1}{4} 4\\pi - \\frac{1}{2}(2)(2) = \\pi - 2$$\nThat means the area of the whole intersection is $\\boxed{\\mathrm{(D) \\ } 2(\\pi-2)}$",
+   "type": "multiple_choice",
+   "points": 6,
+   "figure": null
+  },
+  {
+   "n": 14,
+   "source": "2005 AMC 10A Problem 14",
+   "question": "How many three-digit numbers satisfy the property that the middle digit is the average of the first and the last digits?",
+   "choices": {
+    "A": "41",
+    "B": "42",
+    "C": "43",
+    "D": "44",
+    "E": "45"
+   },
+   "answer": "E",
+   "solution": "If the middle digit is the average of the first and last digits, twice the middle digit must be equal to the sum of the first and last digits. \n\nDoing some casework: \n\nIf the middle digit is $1$, possible numbers range from $111$ to $210$. So there are $2$ numbers in this case. \n\nIf the middle digit is $2$, possible numbers range from $123$ to $420$. So there are $4$ numbers in this case. \n\nIf the middle digit is $3$, possible numbers range from $135$ to $630$. So there are $6$ numbers in this case. \n\nIf the middle digit is $4$, possible numbers range from $147$ to $840$. So there are $8$ numbers in this case. \n\nIf the middle digit is $5$, possible numbers range from $159$ to $951$. So there are $9$ numbers in this case. \n\nIf the middle digit is $6$, possible numbers range from $369$ to $963$. So there are $7$ numbers in this case. \n\nIf the middle digit is $7$, possible numbers range from $579$ to $975$. So there are $5$ numbers in this case. \n\nIf the middle digit is $8$, possible numbers range from $789$ to $987$. So there are $3$ numbers in this case. \n\nIf the middle digit is $9$, the only possible number is $999$. So there is $1$ number in this case. \n\nSo the total number of three-digit numbers that satisfy the property is $2+4+6+8+9+7+5+3+1=\\boxed{\\textbf{(E) } 45}$.",
+   "type": "multiple_choice",
+   "points": 6,
+   "figure": null
+  },
+  {
+   "n": 15,
+   "source": "2021 AMC 10A Problem 15",
+   "question": "Values for $A,B,C,$ and $D$ are to be selected from $\\{1, 2, 3, 4, 5, 6\\}$ without replacement (i.e. no two letters have the same value). How many ways are there to make such choices so that the two curves $y=Ax^2+B$ and $y=Cx^2+D$ intersect? (The order in which the curves are listed does not matter; for example, the choices $A=3, B=2, C=4, D=1$ is considered the same as the choices $A=4, B=1, C=3, D=2.$)",
+   "choices": {
+    "A": "30",
+    "B": "60",
+    "C": "90",
+    "D": "180",
+    "E": "360"
+   },
+   "answer": "C",
+   "solution": "Visualizing the two curves, we realize they are both parabolas with the same axis of symmetry. WLOG the first equation is above the second, since order doesn't matter. Then $C>A$ and $B>D$. Therefore the number of ways to choose the four integers is $\\tbinom{6}{2}\\tbinom{4}{2}=90$, and the answer is $\\boxed{\\textbf{(C) }90}$.",
+   "type": "multiple_choice",
+   "points": 6,
+   "figure": null
+  },
+  {
+   "n": 16,
+   "source": "2006 AMC 10B Problem 16",
+   "question": "Leap Day, February $29$, $2004$, occurred on a Sunday. On what day of the week will Leap Day, February $29$, $2020$, occur?",
+   "choices": {
+    "A": "Tuesday",
+    "B": "Wednesday",
+    "C": "Thursday",
+    "D": "Friday",
+    "E": "Saturday"
+   },
+   "answer": "E",
+   "solution": "There are $365$ days in a year, plus $1$ extra day if there is a Leap Day, which occurs on years that are multiples of $4$ (with a few exceptions that don't affect this problem).  \n\nTherefore, the number of days between Leap Day $2004$ and Leap Day $2020$ is:  \n\n$16 \\cdot 365 + 4 \\cdot 1 = 5844$\n\nSince the days of the week repeat every $7$ days and $5844 \\equiv -1 \\bmod{7}$, the day of the week Leap Day $2020$ occurs is the day of the week the day before Leap Day $2004$ occurs, which is $\\boxed{\\textbf{(E) }\\textrm{Saturday}}$.",
+   "type": "multiple_choice",
+   "points": 6,
+   "figure": null
+  },
+  {
+   "n": 17,
+   "source": "2006 AMC 10B Problem 17",
+   "question": "Bob and Alice each have a bag that contains one ball of each of the colors blue, green, orange, red, and violet. Alice randomly selects one ball from her bag and puts it into Bob's bag. Bob then randomly selects one ball from his bag and puts it into Alice's bag. What is the probability that after this process the contents of the two bags are the same?",
+   "choices": {
+    "A": "$\\frac{1}{10}$",
+    "B": "$\\frac{1}{6}$",
+    "C": "$\\frac{1}{5}$",
+    "D": "$\\frac{1}{3}$",
+    "E": "$\\frac{1}{2}$"
+   },
+   "answer": "D",
+   "solution": "Since there are the same amount of total balls in Alice's bag as in Bob's bag, and there is an equal chance of each ball being selected, the color of the ball that Alice puts in Bob's bag doesn't matter. Without loss of generality, let the ball Alice puts in Bob's bag be red. \n\nFor both bags to have the same contents, Bob must select one of the $2$ red balls out of the $6$ balls in his bag. \n\nSo the desired probability is $\\frac{2}{6} = \\boxed{\\textbf{(D) }\\frac{1}{3}}$.",
+   "type": "multiple_choice",
+   "points": 6,
+   "figure": null
+  },
+  {
+   "n": 18,
+   "source": "2016 AMC 10B Problem 18",
+   "question": "In how many ways can $345$ be written as the sum of an increasing sequence of two or more consecutive positive integers?",
+   "choices": {
+    "A": "1",
+    "B": "3",
+    "C": "5",
+    "D": "6",
+    "E": "7"
+   },
+   "answer": "E",
+   "solution": "Factor $345=3\\cdot 5\\cdot 23$.\n\nSuppose we take an odd number $k$ of consecutive integers, with the median as $m$. Then $mk=345$ with $\\tfrac12k<m$.\nLooking at the factors of $345$, the possible values of $k$ are $3,5,15,23$ with medians as $115,69,23,15$ respectively.\n\nSuppose instead we take an even number $2k$ of consecutive integers, with median being the average of $m$ and $m+1$. Then $k(2m+1)=345$ with $k\\le m$.\nLooking again at the factors of $345$, the possible values of $k$ are $1,3,5$ with medians $(172,173),(57,58),(34,35)$ respectively.\n\nThus the answer is $\\boxed{\\textbf{(E) }7}$.",
+   "type": "multiple_choice",
+   "points": 6,
+   "figure": null
+  },
+  {
+   "n": 19,
+   "source": "2012 AMC 10A Problem 19",
+   "question": "Paula the painter and her two helpers each paint at constant, but different, rates. They always start at 8:00 AM, and all three always take the same amount of time to eat lunch. On Monday the three of them painted 50% of a house, quitting at 4:00 PM. On Tuesday, when Paula wasn't there, the two helpers painted only 24% of the house and quit at 2:12 PM. On Wednesday Paula worked by herself and finished the house by working until 7:12 P.M. How long, in minutes, was each day's lunch break?",
+   "choices": {
+    "A": "30",
+    "B": "36",
+    "C": "42",
+    "D": "48",
+    "E": "60"
+   },
+   "answer": "D",
+   "solution": "Let Paula work at a rate of $p$, the two helpers work at a combined rate of $h$, and the time it takes to eat lunch be $L$, where $p$ and $h$ are in house/hours and L is in hours. Then the labor on Monday, Tuesday, and Wednesday can be represented by the three following equations:\n\n$$(8-L)(p+h)=50$$\n\n$$(6.2-L)h=24$$\n\n$$(11.2-L)p=26$$\n\nWith three equations and three variables, we need to find the value of $L$.\nAdding the second and third equations together gives us $6.2h+11.2p-L(p+h)=50$. Subtracting the first equation from this new one gives us $-1.8h+3.2p=0$, so we get $h=\\frac{16}{9}p$. \nPlugging into the second equation:\n\n$$(6.2-L)\\frac{16}{9}p=24$$\n$$(6.2-L)p=\\frac{27}{2}$$\n\nWe can then subtract this from the third equation:\n\n$$5p=26-\\frac{27}{2}$$\n$$p=\\frac{5}{2}$$\nPlugging $p$ into our third equation gives: $$L=\\frac{4}{5}$$\n\nConverting $L$ from hours to minutes gives us $L=48$ minutes, which is $\\boxed{\\textbf{(D)}\\ 48}$.",
+   "type": "multiple_choice",
+   "points": 6,
+   "figure": null
+  },
+  {
+   "n": 20,
+   "source": "2001 AMC 10 Problem 20",
+   "question": "A regular octagon is formed by cutting an isosceles right triangle from each of the corners of a square with sides of length $ 2000 $. What is the length of each side of the octagon?",
+   "choices": {
+    "A": "$\\frac{1}{3}(2000)$",
+    "B": "{$2000(\\sqrt{2}-1)$}",
+    "C": "{$2000(2-\\sqrt{2})$}",
+    "D": "{1000}",
+    "E": "{$1000\\sqrt{2}$}"
+   },
+   "answer": "B",
+   "solution": "All side lengths of an octagon are equal, so the hypotenuse cut off by the isosceles triangle are equal to the sides of the octagon. Setting the side length of the octagon as $x$, we find that the leg of the isosceles triangle is $x \\sqrt{2}/2$ (45-45-90 special triangle). The two legs and a side of the octagon sum up to a side of the square, so we can write the expression $2(x \\sqrt{2}/2 )+x=2000$. Simplifying and factoring out x, we obtain $x(\\sqrt{2}+1)=2000$. Dividing both sides by $(\\sqrt{2}+1)$ and rationalizing the denominator, we get our answer: $\\boxed{\\textbf{(B) }2000(\\sqrt{2} -1)}$",
+   "type": "multiple_choice",
+   "points": 6,
+   "figure": null
+  },
+  {
+   "n": 21,
+   "source": "2003 AMC 10B Problem 21",
+   "question": "A bag contains two red beads and two green beads. You reach into the bag and pull out a bead, replacing it with a red bead regardless of the color you pulled out. What is the probability that all beads in the bag are red after three such replacements?",
+   "choices": {
+    "A": "$\\frac{1}{8}$",
+    "B": "$\\frac{5}{32}$",
+    "C": "$\\frac{9}{32}$",
+    "D": "$\\frac{3}{8}$",
+    "E": "$\\frac{7}{16}$"
+   },
+   "answer": "C",
+   "solution": "We can divide the case of all beads in the bag being red after three replacements into three cases. \n\nThe first case is in which the two green beads are the first two beads to be chosen. The probability for this is\n$$\\frac{2}{4} \\times \\frac{1}{4} \\times \\frac{4}{4} = \\frac{1}{8}$$ \n\nThe second case is in which the green beads are chosen first and third. The probability for this is\n$$\\frac{2}{4} \\times \\frac{3}{4} \\times \\frac{1}{4} = \\frac{3}{32}$$\n\nThe third case is in which the green beads are chosen second and third. The probability for this is\n$$\\frac{2}{4} \\times \\frac{2}{4} \\times \\frac{1}{4} = \\frac{1}{16}$$\n\nAdd all these cases together\n$$\\frac{1}{8}+\\frac{3}{32}+\\frac{1}{16} = \\frac{4}{32}+\\frac{3}{32}+\\frac{2}{32} = \\boxed{\\textbf{(C) \\ } \\frac{9}{32}}$$",
+   "type": "multiple_choice",
+   "points": 6,
+   "figure": null
+  },
+  {
+   "n": 22,
+   "source": "2000 AMC 10 Problem 22",
+   "question": "One morning each member of Angela's family drank an 8-ounce mixture of coffee with milk. The amounts of coffee and milk varied from cup to cup, but were never zero. Angela drank a quarter of the total amount of milk and a sixth of the total amount of coffee. How many people are in the family?",
+   "choices": {
+    "A": "3",
+    "B": "4",
+    "C": "5",
+    "D": "6",
+    "E": "7"
+   },
+   "answer": "C",
+   "solution": "Let $c$ be the total amount of coffee, $m$ of milk, and $p$ the number of people in the family. Then each person drinks the same total amount of coffee and milk (8 ounces), so \n$$\\left(\\frac{c}{6} + \\frac{m}{4}\\right)p = c + m$$\nRegrouping, we get $2c(6-p)=3m(p-4)$. Since both $c,m$ are positive, it follows that $6-p$ and $p-4$ are also positive, which is only possible when $p = 5\\ \\mathrm{(C)}$.",
+   "type": "multiple_choice",
+   "points": 6,
+   "figure": null
+  },
+  {
+   "n": 23,
+   "source": "2024 AMC 10A Problem 23",
+   "question": "Integers $a$, $b$, and $c$ satisfy $ab + c = 100$, $bc + a = 87$, and $ca + b = 60$. What is $ab + bc + ca$?",
+   "choices": {
+    "A": "212",
+    "B": "247",
+    "C": "258",
+    "D": "276",
+    "E": "284"
+   },
+   "answer": "D",
+   "solution": "Subtracting the first two equations yields $(a-c)(b-1)=13$. Notice that both factors are integers, so $b-1$ could equal one of $13,1,-1,-13$ and $b=14,2,0,-12$. We consider each case separately:\n\nFor $b=0$, from the second equation, we see that $a=87$. Then $87c=60$, which is not possible as $c$ is an integer, so this case is invalid.\n\nFor $b=2$, we have $2c+a=87$ and $ca=58$, which by experimentation on the factors of $58$ has no solution, so this is also invalid.\n\nFor $b=14$, we have $14c+a=87$ and $ca=46$, which by experimentation on the factors of $46$ has no solution, so this is also invalid.\n\nThus, we must have $b=-12$, so $a=12c+87$ and $ca=72$. Thus $c(12c+87)=72$, so $c(4c+29)=24$. We can simply trial and error this to find that $c=-8$ so then $a=-9$. The answer is then $(-9)(-12)+(-12)(-8)+(-8)(-9)=108+96+72=\\boxed{\\textbf{(D) }276}$.\n\nBy Antony Huang Minor Edit by lucassf12",
+   "type": "multiple_choice",
+   "points": 6,
+   "figure": null
+  },
+  {
+   "n": 24,
+   "source": "2022 AMC 10A Problem 24",
+   "question": "How many strings of length $5$ formed from the digits $0$, $1$, $2$, $3$, $4$ are there such that for each $j \\in \\{1,2,3,4\\}$, at least $j$ of the digits are less than $j$? (For example, $02214$ satisfies this condition\nbecause it contains at least $1$ digit less than $1$, at least $2$ digits less than $2$, at least $3$ digits less\nthan $3$, and at least $4$ digits less than $4$. The string $23404$ does not satisfy the condition because it\ndoes not contain at least $2$ digits less than $2$.)",
+   "choices": {
+    "A": "500",
+    "B": "625",
+    "C": "1089",
+    "D": "1199",
+    "E": "1296"
+   },
+   "answer": "E",
+   "solution": "For some $n$, let there be $n+1$ parking spaces counterclockwise in a circle. Consider a string of $n$ integers $c_1c_2 \\ldots c_n$ each between $0$ and $n$, and let $n$ cars come into this circle so that the $i$th car tries to park at spot $c_i$, but if it is already taken then it instead keeps going counterclockwise and takes the next available spot. After this process, exactly one spot will remain empty.\n\nThen the strings of $n$ numbers between $0$ and $n-1$ that contain at least $k$ integers $<k$ for $1 \\leq k \\leq n$ are exactly the set of strings that leave spot $n$ empty. Also note for any string $c_1c_2 \\ldots c_n$, we can add $1$ to each $c_i$ (mod $n+1$) to shift the empty spot counterclockwise, meaning for each string there exists exactly one $j$ with $0 \\leq j \\leq n$ so that $(c_1+j)(c_2+j) \\ldots (c_n+j)$ leaves spot $n$ empty. This gives there are $\\frac{(n+1)^{n}}{n+1} = (n+1)^{n-1}$ such strings. \n\nPlugging in $n = 5$ gives $\\boxed{\\textbf{(E) }1296}$ such strings.",
+   "type": "multiple_choice",
+   "points": 6,
+   "figure": null
+  },
+  {
+   "n": 25,
+   "source": "2007 AMC 10B Problem 25",
+   "question": "How many pairs of positive integers $(a,b)$ are there such that $a$ and $b$ have no common factors greater than $1$ and:\n\n$$\\frac{a}{b} + \\frac{14b}{9a}$$\n\nis an integer?",
+   "choices": {
+    "A": "4",
+    "B": "6",
+    "C": "9",
+    "D": "12",
+    "E": "$\\text{infinitely many}$"
+   },
+   "answer": "A",
+   "solution": "Let $\\frac{a}{b} = x$ and $\\frac{14b}{9a} = y.$ Then for rational numbers $x,y$ we have $xy = \\frac{14}{9}$ and $x+y \\in \\mathbb{Z}.$ One can prove that $x$ and $y$ must both have the same denominator in order for their sum to be an integer. This denominator is $3$ meaning $b=3$ and $a$ is any factor of $14.$ This yields $\\boxed{(A) 4}$ solutions.",
+   "type": "multiple_choice",
+   "points": 6,
+   "figure": null
+  }
+ ]
+}

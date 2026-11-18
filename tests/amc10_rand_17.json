@@ -1,0 +1,1659 @@
+{
+ "id": "amc10_rand_17",
+ "competition": "AMC 10",
+ "category": "Math",
+ "bank_version": 2,
+ "title": "AMC 10 — Random Mock #17 · 2026-11-14 16:20",
+ "instructions": "25 questions · 75 minutes · No calculator. 150 points total.",
+ "time_limit_min": 75,
+ "total_points": 150,
+ "questions": [
+  {
+   "n": 1,
+   "source": "2023 AMC 10B Problem 1",
+   "question": "Mrs. Jones is pouring orange juice into four identical glasses for her four sons. She fills the first three glasses completely but runs out of juice when the fourth glass is only  $\\frac{1}{3}$  full. What fraction of a glass must Mrs. Jones pour from each of the first three glasses into the fourth glass so that all four glasses will have the same amount of juice?",
+   "choices": {
+    "A": "$\\frac{1}{12}$",
+    "B": "$\\frac{1}{4}$",
+    "C": "$\\frac{1}{6}$",
+    "D": "$\\frac{1}{8}$",
+    "E": "$\\frac{2}{9}$"
+   },
+   "answer": "C",
+   "solution": "The first three glasses each have a full glass.  Let's assume that each glass has \"1 unit\" of juice. It won't matter exactly how much juice everyone has because we're dealing with ratios, and that wouldn't affect our answer. The fourth glass has a glass that is one third. So the total amount of juice will be  $1+1+1+\\dfrac{1}{3} = \\dfrac{10}{3}$ . If we divide the total amount of juice by 4, we get  $\\dfrac{5}{6}$ , which should be the amount of juice in each glass. This means that each of the first three glasses will have to contribute  $1 - \\dfrac{5}{6} = \\boxed{\\dfrac{1}{6}}$  to the fourth glass.\n~Sir Ian Seo the Great & lprado\n\n---\n\nSource: https://artofproblemsolving.com/wiki/index.$php/2023_AMC_10B_Problems/Problem_1$",
+   "type": "multiple_choice",
+   "points": 6,
+   "figure": null,
+   "classification": {
+    "state": "done",
+    "primary": "word_problems.ratio_percent.ratio_allocation",
+    "tags": [
+     {
+      "id": "word_problems.ratio_percent.ratio_allocation",
+      "weight": 1.0
+     },
+     {
+      "id": "word_problems.ratio_percent",
+      "weight": 0.6
+     }
+    ],
+    "source": "model",
+    "confidence": 0.95,
+    "reviewed": false,
+    "note": "Two-step average: total juice divided by 4, then subtract from 1; textbook AMC 10 #1."
+   },
+   "difficulty": {
+    "level": 3,
+    "scale": "amc20",
+    "band": "easy",
+    "score": 3.05,
+    "method": "hybrid",
+    "confidence": 0.74,
+    "components": [
+     {
+      "method": "prior",
+      "score": 5.0,
+      "weight": 0.35,
+      "confidence": 0.35,
+      "reason": "amc10 5.0->15.0 at t=0.00 = 5.00"
+     },
+     {
+      "method": "llm_rubric",
+      "score": 2.0,
+      "weight": 0.65,
+      "confidence": 0.95
+     }
+    ],
+    "evidence": {
+     "attempts": 0
+    },
+    "reviewed": false,
+    "at": "2026-11-05"
+   }
+  },
+  {
+   "n": 2,
+   "source": "2002 AMC 10P Problem 2",
+   "question": "The sum of eleven consecutive integers is $2002.$ What is the least of these integers?\n\n$\n\\text{(A) }175\n\\qquad\n\\text{(B) }177\n\\qquad\n\\text{(C) }179\n\\qquad\n\\text{(D) }180\n\\qquad\n\\text{(E) }181\n$",
+   "choices": {
+    "A": "175",
+    "B": "177",
+    "C": "179",
+    "D": "180",
+    "E": "181"
+   },
+   "answer": "B",
+   "solution": "We can use the sum of an arithmetic series to solve this problem.\n\nLet the first integer equal $a.$ The last integer in this string will be $a+10.$ Plugging in $n=11, a_1=a,$ and $a_n=a+10$ into $\\frac{n(a_1 + a_n)}{2}=2002,$ we get:\n\n\n$\\frac{11(a + a+10)}{2}=2002 $ \\\\\n$11(2a+10)=4004 $ \\\\\n$2a+10=364 $ \\\\\n$2a=354 $ \\\\\n$a=177$7\\\\\n\n\nThus, our answer is $\\boxed{\\textbf{(B) }177}$\n\nSolution 2\n\nWe can directly add everything up since $1 + 2 + \\; \\dots \\; + 10$ is so little.\n\nSimilar to the first solution, let the first integer equal $a.$ The last integer in this string will be $a+10.$\n\n\n$a + (a + 1) + (a + 2) + \\; \\dots \\; + (a + 10) = 2002 $ \\\\\n$11a + (1 + 2 + \\; \\dots \\; + 10) = 2002 $ \\\\\n$11a + 55 = 2002 $ \\\\\n$11a = 1947 $ \\\\\n$a = \\frac{1947}{11} $ \\\\\n$a = 177 $ \\\\\n\n\nThus, our answer is $\\boxed{\\textbf{(B) }177}$\n\n---\n\nSource: https://artofproblemsolving.com/wiki/index.$php/2002_AMC_10P_Problems$",
+   "type": "multiple_choice",
+   "points": 6,
+   "figure": null,
+   "classification": {
+    "state": "done",
+    "primary": "algebra.sequences.arithmetic_sequence",
+    "tags": [
+     {
+      "id": "algebra.sequences.arithmetic_sequence",
+      "weight": 1.0
+     },
+     {
+      "id": "algebra.equations.linear_quadratic",
+      "weight": 0.6
+     }
+    ],
+    "source": "model",
+    "confidence": 0.95,
+    "reviewed": false,
+    "note": "Direct application of the arithmetic series sum formula; one linear equation to solve."
+   },
+   "difficulty": {
+    "level": 3,
+    "scale": "amc20",
+    "band": "easy",
+    "score": 3.2,
+    "method": "hybrid",
+    "confidence": 0.74,
+    "components": [
+     {
+      "method": "prior",
+      "score": 5.42,
+      "weight": 0.35,
+      "confidence": 0.35,
+      "reason": "amc10 5.0->15.0 at t=0.04 = 5.42"
+     },
+     {
+      "method": "llm_rubric",
+      "score": 2.0,
+      "weight": 0.65,
+      "confidence": 0.95
+     }
+    ],
+    "evidence": {
+     "attempts": 0
+    },
+    "reviewed": false,
+    "at": "2026-11-05"
+   }
+  },
+  {
+   "n": 3,
+   "source": "2017 AMC 10B Problem 3",
+   "question": "Real numbers  $x$ ,  $y$ , and  $z$  satisfy the inequalities\n $0<x<1$ ,  $-1<y<0$ , and  $1<z<2$ .\nWhich of the following numbers is necessarily positive?",
+   "choices": {
+    "A": "$y+x^2$",
+    "B": "y+xz",
+    "C": "$y+y^2$",
+    "D": "$y+2y^2$",
+    "E": "y+z"
+   },
+   "answer": "E",
+   "solution": "Notice that  $y+z$  must be positive because  $|z|>|y|$ . Therefore the answer is  $\\boxed{\\textbf{(E) } y+z}$ .\nThe other choices:",
+   "type": "multiple_choice",
+   "points": 6,
+   "figure": null,
+   "classification": {
+    "state": "done",
+    "primary": "algebra.inequalities.boundary_extrema",
+    "tags": [
+     {
+      "id": "algebra.inequalities.boundary_extrema",
+      "weight": 1.0
+     },
+     {
+      "id": "methods.enumeration_patterns.small_case_testing",
+      "weight": 0.6
+     }
+    ],
+    "source": "model",
+    "confidence": 0.95,
+    "reviewed": false,
+    "note": "Check each expression's minimum given variable bounds; only y+z is forced positive since z>1 and y>-1."
+   },
+   "difficulty": {
+    "level": 4,
+    "scale": "amc20",
+    "band": "easy",
+    "score": 3.99,
+    "method": "hybrid",
+    "confidence": 0.74,
+    "components": [
+     {
+      "method": "prior",
+      "score": 5.83,
+      "weight": 0.35,
+      "confidence": 0.35,
+      "reason": "amc10 5.0->15.0 at t=0.08 = 5.83"
+     },
+     {
+      "method": "llm_rubric",
+      "score": 3.0,
+      "weight": 0.65,
+      "confidence": 0.95
+     }
+    ],
+    "evidence": {
+     "attempts": 0
+    },
+    "reviewed": false,
+    "at": "2026-11-05"
+   }
+  },
+  {
+   "n": 4,
+   "source": "2009 AMC 10B Problem 4",
+   "question": "A rectangular yard contains two flower beds in the shape of congruent isosceles right triangles. The remainder of the yard has a trapezoidal shape, as shown. The parallel sides of the trapezoid have lengths  $15$  and  $25$  meters. What fraction of the yard is occupied by the flower beds?",
+   "choices": null,
+   "answer": "15",
+   "solution": "Each triangle has leg length  $\\frac 12 \\cdot (25 - 15) = 5$  meters and area  $\\frac 12 \\cdot 5^2 = \\frac {25}{2}$  square meters.  Thus the flower beds have a total area of  $25$  square meters.  The entire yard has length  $25$  m and width  $5$  m, so its area is  $125$  square meters.  The fraction of the yard occupied by the flower beds is  $\\frac {25}{125} = \\boxed{\\frac15}$ .  The answer is  $\\mathrm{(C)}$ .\n\n---\n\nSource: https://artofproblemsolving.com/wiki/index.$php/2009_AMC_10B_Problems/Problem_4$",
+   "type": "integer_answer",
+   "points": 6,
+   "figure": {
+    "kind": "svg",
+    "state": "ready",
+    "placement": "prompt",
+    "src": "/figures/amc10b-2009-q04-img1.svg",
+    "mime": "image/svg+xml",
+    "alt": "AMC 10 2009 Problem 4 的几何配图",
+    "width": 477.0,
+    "height": 104.0,
+    "viewBox": "56.808 82.6032 142.529 29.1435",
+    "sha256": "9bb62d002782545afaeee6901d3b371444a0f9f2fec5c5aa9dc8f137c9be6d86"
+   },
+   "classification": {
+    "state": "done",
+    "primary": "plane_geometry.triangle_area",
+    "tags": [
+     {
+      "id": "plane_geometry.triangle_area",
+      "weight": 1.0
+     },
+     {
+      "id": "plane_geometry.quadrilaterals",
+      "weight": 0.6
+     },
+     {
+      "id": "plane_geometry.triangle_basics",
+      "weight": 0.45
+     }
+    ],
+    "source": "model",
+    "confidence": 0.9,
+    "reviewed": false,
+    "note": "Recognize leg length from trapezoid sides, compute two triangle areas vs rectangle area; two routine steps."
+   },
+   "difficulty": {
+    "level": 5,
+    "scale": "amc20",
+    "band": "easy",
+    "score": 4.79,
+    "method": "hybrid",
+    "confidence": 0.71,
+    "components": [
+     {
+      "method": "prior",
+      "score": 6.25,
+      "weight": 0.35,
+      "confidence": 0.35,
+      "reason": "amc10 5.0->15.0 at t=0.12 = 6.25"
+     },
+     {
+      "method": "llm_rubric",
+      "score": 4.0,
+      "weight": 0.65,
+      "confidence": 0.9
+     }
+    ],
+    "evidence": {
+     "attempts": 0
+    },
+    "reviewed": false,
+    "at": "2026-11-05"
+   }
+  },
+  {
+   "n": 5,
+   "source": "2024 AMC 10B Problem 5",
+   "question": "In the following expression, Melanie changed some of the plus signs to minus signs:\n $1+3+5+7+...+97+99$\nWhen the new expression was evaluated, it was negative. What is the least number of plus signs that Melanie could have changed to minus signs?",
+   "choices": {
+    "A": "14",
+    "B": "15",
+    "C": "16",
+    "D": "17",
+    "E": "18"
+   },
+   "answer": "B",
+   "solution": "Recall that the sum of the first  $n$  odd numbers is  $n^2$ . Thus  $1 + 3 + 5 + 7+ \\dots + 97 + 99 = 50^2 = 2500.$\nIf we want to minimize the number of sign flips to make the number negative, we must flip the signs corresponding to the values with largest absolute value. This will result in the inequality  $1 + 3 + 5 +\\dots + (2n - 3) + (2n - 1) - (2n + 1) - (2n + 3)-\\dots - 97 - 99 < 0.$\nThe positive section of the sum will contribute  $n^2$ , and the negative section will contribute  $-(2500-n^2) = (n^2 - 2500)$ . The inequality simplifies to\n $n^2 + (n^2 - 2500) < 0$\n $2n^2 < 2500$\n $n^2 < 1250$\nThe greatest positive value of  $n$  satisfying the inequality is  $n = 35$ , corresponding to  $35$  positive numbers, and  $\\boxed{\\text{B. } 15}$  negatives.\n~numerophile\n\n---\n\nSource: https://artofproblemsolving.com/wiki/index.$php/2024_AMC_10B_Problems/Problem_5$",
+   "type": "multiple_choice",
+   "points": 6,
+   "figure": null,
+   "classification": {
+    "state": "done",
+    "primary": "word_problems.optimization_applied.minimum_steps",
+    "tags": [
+     {
+      "id": "word_problems.optimization_applied.minimum_steps",
+      "weight": 1.0
+     },
+     {
+      "id": "algebra.sequences.arithmetic_sequence",
+      "weight": 0.6
+     },
+     {
+      "id": "algebra.inequalities.boundary_extrema",
+      "weight": 0.45
+     }
+    ],
+    "source": "model",
+    "confidence": 0.85,
+    "reviewed": false,
+    "note": "Key insight is flipping the largest terms to minimize count, then solving a simple quadratic inequality; standard AMC 10 #5 level."
+   },
+   "difficulty": {
+    "level": 6,
+    "scale": "amc20",
+    "band": "easy",
+    "score": 5.58,
+    "method": "hybrid",
+    "confidence": 0.67,
+    "components": [
+     {
+      "method": "prior",
+      "score": 6.67,
+      "weight": 0.35,
+      "confidence": 0.35,
+      "reason": "amc10 5.0->15.0 at t=0.17 = 6.67"
+     },
+     {
+      "method": "llm_rubric",
+      "score": 5.0,
+      "weight": 0.65,
+      "confidence": 0.85
+     }
+    ],
+    "evidence": {
+     "attempts": 0
+    },
+    "reviewed": false,
+    "at": "2026-11-05"
+   }
+  },
+  {
+   "n": 6,
+   "source": "2009 AMC 10B Problem 6",
+   "question": "Kiana has two older twin brothers.  The product of their three ages is 128.  What is the sum of their three ages?\n$\\mathrm{(A)}\\ 10\\qquad \\mathrm{(B)}\\ 12\\qquad \\mathrm{(C)}\\ 16\\qquad \\mathrm{(D)}\\ 18\\qquad \\mathrm{(E)}\\ 24$",
+   "choices": {
+    "A": "10",
+    "B": "12",
+    "C": "16",
+    "D": "18",
+    "E": "24"
+   },
+   "answer": "D",
+   "solution": "The age of each person is a factor of  $128 = 2^7$ .  So the twins could be  $2^0 = 1, 2^1 = 2, 2^2 = 4, 2^3 = 8$  years of age and, consequently Kiana could be  $128$ ,  $32$ ,  $8$ , or  $2$  years old, respectively.  Because Kiana is younger than her brothers, she must be  $2$  years old. So the sum of their ages is  $2 + 8 + 8 = \\boxed{18}$ .  The answer is  $\\mathrm{(D)}$ .\n\n---\n\nSource: https://artofproblemsolving.com/wiki/index.$php/2009_AMC_10B_Problems/Problem_6$",
+   "type": "multiple_choice",
+   "points": 6,
+   "figure": null,
+   "classification": {
+    "state": "done",
+    "primary": "number_theory.divisibility.prime_factorization",
+    "tags": [
+     {
+      "id": "number_theory.divisibility.prime_factorization",
+      "weight": 1.0
+     },
+     {
+      "id": "number_theory.divisibility.multiples_factors",
+      "weight": 0.6
+     },
+     {
+      "id": "methods.case_analysis",
+      "weight": 0.45
+     }
+    ],
+    "source": "model",
+    "confidence": 0.9,
+    "reviewed": false,
+    "note": "Factor 128 as 2^7, list possible twin ages, apply the 'younger' constraint to pick the unique case."
+   },
+   "difficulty": {
+    "level": 5,
+    "scale": "amc20",
+    "band": "easy",
+    "score": 5.08,
+    "method": "hybrid",
+    "confidence": 0.71,
+    "components": [
+     {
+      "method": "prior",
+      "score": 7.08,
+      "weight": 0.35,
+      "confidence": 0.35,
+      "reason": "amc10 5.0->15.0 at t=0.21 = 7.08"
+     },
+     {
+      "method": "llm_rubric",
+      "score": 4.0,
+      "weight": 0.65,
+      "confidence": 0.9
+     }
+    ],
+    "evidence": {
+     "attempts": 0
+    },
+    "reviewed": false,
+    "at": "2026-11-05"
+   }
+  },
+  {
+   "n": 7,
+   "source": "2012 AMC 10B Problem 7",
+   "question": "For a science project, Sammy observed a chipmunk and a squirrel stashing acorns in holes. The chipmunk hid 3 acorns in each of the holes it dug. The squirrel hid 4 acorns in each of the holes it dug. They each hid the same number of acorns, although the squirrel needed 4 fewer holes. How many acorns did the chipmunk hide?",
+   "choices": {
+    "A": "30",
+    "B": "36",
+    "C": "42",
+    "D": "48",
+    "E": "54"
+   },
+   "answer": "D",
+   "solution": "Let  $x$  be the number of acorns that both animals had.\nSo by the info in the problem:\n$\\frac{x}{3}=\\left( \\frac{x}{4} \\right)+4$\nSubtracting  $\\frac{x}{4}$  from both sides leaves\n$\\frac{x}{12}=4$\n$\\boxed{x=48}$\nThis is answer choice  $\\textbf{(D)}$\n\n---\n\nSource: https://artofproblemsolving.com/wiki/index.$php/2012_AMC_10B_Problems/Problem_7$",
+   "type": "multiple_choice",
+   "points": 6,
+   "figure": null,
+   "classification": {
+    "state": "done",
+    "primary": "algebra.equations.linear_quadratic",
+    "tags": [
+     {
+      "id": "algebra.equations.linear_quadratic",
+      "weight": 1.0
+     },
+     {
+      "id": "word_problems.ratio_percent.ratio_allocation",
+      "weight": 0.6
+     }
+    ],
+    "source": "model",
+    "confidence": 0.9,
+    "reviewed": false,
+    "note": "Set up one linear equation from the rate relationship; single-step solve, standard textbook method."
+   },
+   "difficulty": {
+    "level": 6,
+    "scale": "amc20",
+    "band": "easy",
+    "score": 5.88,
+    "method": "hybrid",
+    "confidence": 0.71,
+    "components": [
+     {
+      "method": "prior",
+      "score": 7.5,
+      "weight": 0.35,
+      "confidence": 0.35,
+      "reason": "amc10 5.0->15.0 at t=0.25 = 7.50"
+     },
+     {
+      "method": "llm_rubric",
+      "score": 5.0,
+      "weight": 0.65,
+      "confidence": 0.9
+     }
+    ],
+    "evidence": {
+     "attempts": 0
+    },
+    "reviewed": false,
+    "at": "2026-11-05"
+   }
+  },
+  {
+   "n": 8,
+   "source": "2010 AMC 10A Problem 8",
+   "question": "Tony works  $2$  hours a day and is paid $ $0.50$  per hour for each full year of his age. During a six month period Tony worked  $50$  days and earned $ $630$ . How old was Tony at the end of the six month period?\n$\\mathrm{(A)}\\ 9 \\qquad \\mathrm{(B)}\\ 11 \\qquad \\mathrm{(C)}\\ 12 \\qquad \\mathrm{(D)}\\ 13 \\qquad \\mathrm{(E)}\\ 14$",
+   "choices": {
+    "A": "9",
+    "B": "11",
+    "C": "12",
+    "D": "13",
+    "E": "14"
+   },
+   "answer": "D",
+   "solution": "Tony works  $2$  hours a day and is paid  $0.50$  dollars per hour for each full year of his age. This basically says that he gets a dollar for each year of his age. So if he is  $12$  years old, he gets  $12$  dollars a day. We also know that he worked  $50$  days and earned  $630$  dollars. If he was  $12$  years old at the beginning of his working period, he would have earned  $12 * 50 = 600$  dollars. If he was  $13$  years old at the beginning of his working period, he would have earned  $13 * 50 = 650$  dollars. Because he earned  $630$  dollars, we know that he was  $13$  for some period of time, but not the whole time, because then the money earned would be greater than or equal to  $650$ . This is why he was  $12$  when he began, but turned  $13$  sometime during the six month period and earned  $630$  dollars in total. So the answer is  $13$ .The answer is  $\\boxed{D}$ . We could find out for how long he was  $12$  and  $13$ .  $12 \\cdot x + 13 \\cdot (50-x) = 630$ . Then  $x$  is  $20$  and we know that he was  $12$  for  $20$  days, and  $13$  for  $30$  days. Thus, the answer is  $13$ .\n\n---\n\nSource: https://artofproblemsolving.com/wiki/index.$php/2010_AMC_10A_Problems/Problem_8$",
+   "type": "multiple_choice",
+   "points": 6,
+   "figure": null,
+   "classification": {
+    "state": "done",
+    "primary": "algebra.equations.linear_quadratic",
+    "tags": [
+     {
+      "id": "algebra.equations.linear_quadratic",
+      "weight": 1.0
+     },
+     {
+      "id": "word_problems.work_rate",
+      "weight": 0.6
+     },
+     {
+      "id": "methods.case_analysis",
+      "weight": 0.45
+     }
+    ],
+    "source": "model",
+    "confidence": 0.85,
+    "reviewed": false,
+    "note": "Key observation is that his age changes mid-period; then a simple linear equation in one variable."
+   },
+   "difficulty": {
+    "level": 7,
+    "scale": "amc20",
+    "band": "easy",
+    "score": 7.32,
+    "method": "hybrid",
+    "confidence": 0.67,
+    "components": [
+     {
+      "method": "prior",
+      "score": 7.92,
+      "weight": 0.35,
+      "confidence": 0.35,
+      "reason": "amc10 5.0->15.0 at t=0.29 = 7.92"
+     },
+     {
+      "method": "llm_rubric",
+      "score": 7.0,
+      "weight": 0.65,
+      "confidence": 0.85
+     }
+    ],
+    "evidence": {
+     "attempts": 0
+    },
+    "reviewed": false,
+    "at": "2026-11-05"
+   }
+  },
+  {
+   "n": 9,
+   "source": "2015 AMC 10A Problem 9",
+   "question": "Two right circular cylinders have the same volume. The radius of the second cylinder is  $10\\%$  more than the radius of the first. What is the relationship between the heights of the two cylinders?",
+   "choices": {
+    "A": "$\\text{The second height is } 10\\% \\text{ less than the first.}$",
+    "B": "$\\text{The first height is } 10\\% \\text{ more than the second.}$",
+    "C": "$\\text{The second height is } 21\\% \\text{ less than the first.}$",
+    "D": "$\\text{The first height is } 21\\% \\text{ more than the second.}$",
+    "E": "$\\text{The second height is } 80\\% \\text{ of the first.}$"
+   },
+   "answer": "C",
+   "solution": "Let the radius of the first cylinder be  $r_1$  and the radius of the second cylinder be  $r_2$ . Also, let the height of the first cylinder be  $h_1$  and the height of the second cylinder be  $h_2$ . We are told  $r_2=\\frac{11r_1}{10}$   $\\pi r_1^2h_1=\\pi r_2^2h_2$  Substituting the first equation into the second and dividing both sides by  $\\pi$ , we get  $r_1^2h_1=\\frac{121r_1^2}{100}h_2\\implies h_1=\\frac{121h_2}{100}.$  Therefore,  $\\boxed{\\textbf{(D)}\\ \\text{The first height is } 21\\% \\text{ more than the second.}}$\n\n---\n\nSource: https://artofproblemsolving.com/wiki/index.$php/2015_AMC_10A_Problems/Problem_9$",
+   "type": "multiple_choice",
+   "points": 6,
+   "figure": null,
+   "classification": {
+    "state": "done",
+    "primary": "solid_geometry.solid_volume.cylinder",
+    "tags": [
+     {
+      "id": "solid_geometry.solid_volume.cylinder",
+      "weight": 1.0
+     },
+     {
+      "id": "word_problems.ratio_percent.percent_change",
+      "weight": 0.6
+     },
+     {
+      "id": "algebra.exponents.exponent_rules",
+      "weight": 0.45
+     }
+    ],
+    "source": "model",
+    "confidence": 0.9,
+    "reviewed": false,
+    "note": "Direct application of V=πr²h with a simple ratio; standard two-step computation typical of early AMC 12."
+   },
+   "difficulty": {
+    "level": 6,
+    "scale": "amc20",
+    "band": "easy",
+    "score": 6.17,
+    "method": "hybrid",
+    "confidence": 0.71,
+    "components": [
+     {
+      "method": "prior",
+      "score": 8.33,
+      "weight": 0.35,
+      "confidence": 0.35,
+      "reason": "amc10 5.0->15.0 at t=0.33 = 8.33"
+     },
+     {
+      "method": "llm_rubric",
+      "score": 5.0,
+      "weight": 0.65,
+      "confidence": 0.9
+     }
+    ],
+    "evidence": {
+     "attempts": 0
+    },
+    "reviewed": false,
+    "at": "2026-11-05"
+   }
+  },
+  {
+   "n": 10,
+   "source": "2003 AMC 10B Problem 10",
+   "question": "Nebraska, the home of the AMC, changed its license plate scheme. Each old license plate consisted of a letter followed by four digits. Each new license plate consists of three letters followed by three digits. By how many times has the number of possible license plates increased?",
+   "choices": {
+    "A": "$\\frac{26}{10}$",
+    "B": "$\\frac{26^2}{10^2}$",
+    "C": "$\\frac{26^2}{10}$",
+    "D": "$\\frac{26^3}{10^3}$",
+    "E": "$\\frac{26^3}{10^2}$"
+   },
+   "answer": "C",
+   "solution": "There are  $26$  letters and  $10$  digits. There were  $26 \\cdot 10^4$  old license plates. There are  $26^3 \\cdot 10^3$  new license plates. The number of license plates increased by\n$\\frac{26^3 \\cdot 10^3}{26 \\cdot 10^4} = \\boxed{\\textbf{(C) \\ } \\frac{26^2}{10}}$\nNote: Nebraska is not actually the home of the AMC, the AMC resides in Washington D.C., where its headquarters is located.\n~$Andrew_Lu, Mismatchedcubing$\n\n---\n\nSource: https://artofproblemsolving.com/wiki/index.$php/2003_AMC_10B_Problems/Problem_10$",
+   "type": "multiple_choice",
+   "points": 6,
+   "figure": null,
+   "classification": {
+    "state": "done",
+    "primary": "combinatorics.counting_principles.multiplication_principle",
+    "tags": [
+     {
+      "id": "combinatorics.counting_principles.multiplication_principle",
+      "weight": 1.0
+     },
+     {
+      "id": "combinatorics.counting_principles.counting_by_steps",
+      "weight": 0.6
+     }
+    ],
+    "source": "model",
+    "confidence": 0.9,
+    "reviewed": false,
+    "note": "Two straightforward counts via multiplication principle, then one division; standard textbook application."
+   },
+   "difficulty": {
+    "level": 6,
+    "scale": "amc20",
+    "band": "easy",
+    "score": 6.31,
+    "method": "hybrid",
+    "confidence": 0.71,
+    "components": [
+     {
+      "method": "prior",
+      "score": 8.75,
+      "weight": 0.35,
+      "confidence": 0.35,
+      "reason": "amc10 5.0->15.0 at t=0.38 = 8.75"
+     },
+     {
+      "method": "llm_rubric",
+      "score": 5.0,
+      "weight": 0.65,
+      "confidence": 0.9
+     }
+    ],
+    "evidence": {
+     "attempts": 0
+    },
+    "reviewed": false,
+    "at": "2026-11-05"
+   }
+  },
+  {
+   "n": 11,
+   "source": "2018 AMC 10A Problem 11",
+   "question": "When  $7$  fair standard  $6$ -sided dice are thrown, the probability that the sum of the numbers on the top faces is  $10$  can be written as  $\\frac{n}{6^{7}},$  where  $n$  is a positive integer. What is  $n$ ?",
+   "choices": {
+    "A": "42",
+    "B": "49",
+    "C": "56",
+    "D": "63",
+    "E": "84"
+   },
+   "answer": "E",
+   "solution": "Solution 1Add possibilities. There are  $3$  ways to sum to  $10$ , listed below.\n$4,1,1,1,1,1,1: 7$\n $3,2,1,1,1,1,1: 42$\n $2,2,2,1,1,1,1: 35.$\nAdd up the possibilities:  $35+42+7=\\boxed{\\textbf{(E) }  84}$ .\n\n---\n\nSource: https://artofproblemsolving.com/wiki/index.$php/2018_AMC_10A_Problems/Problem_11$",
+   "type": "multiple_choice",
+   "points": 6,
+   "figure": null,
+   "classification": {
+    "state": "done",
+    "primary": "combinatorics.stars_and_bars.restricted_distribution",
+    "tags": [
+     {
+      "id": "combinatorics.stars_and_bars.restricted_distribution",
+      "weight": 1.0
+     },
+     {
+      "id": "combinatorics.counting_principles.counting_by_cases",
+      "weight": 0.6
+     },
+     {
+      "id": "methods.case_analysis",
+      "weight": 0.45
+     }
+    ],
+    "source": "model",
+    "confidence": 0.85,
+    "reviewed": false,
+    "note": "Count compositions of 10 into 7 parts (each 1–6) by casework on partitions; three cases with permutation counts."
+   },
+   "difficulty": {
+    "level": 9,
+    "scale": "amc20",
+    "band": "easy",
+    "score": 9.06,
+    "method": "hybrid",
+    "confidence": 0.67,
+    "components": [
+     {
+      "method": "prior",
+      "score": 9.17,
+      "weight": 0.35,
+      "confidence": 0.35,
+      "reason": "amc10 5.0->15.0 at t=0.42 = 9.17"
+     },
+     {
+      "method": "llm_rubric",
+      "score": 9.0,
+      "weight": 0.65,
+      "confidence": 0.85
+     }
+    ],
+    "evidence": {
+     "attempts": 0
+    },
+    "reviewed": false,
+    "at": "2026-11-05"
+   }
+  },
+  {
+   "n": 12,
+   "source": "2012 AMC 10B Problem 12",
+   "question": "Point  $B$  is due east of point  $A$ . Point  $C$  is due north of point  $B$ . The distance between points  $A$  and  $C$  is  $10\\sqrt 2$ , and  $\\angle BAC = 45^\\circ$ . Point  $D$  is  $20$  meters due north of point  $C$ . The distance  $AD$  is between which two integers?",
+   "choices": {
+    "A": "30\\ $\\text{and}$\\ 31",
+    "B": "31\\ $\\text{and}$\\ 32",
+    "C": "32\\ $\\text{and}$\\ 33",
+    "D": "33\\ $\\text{and}$\\ 34",
+    "E": "34\\ $\\text{and}$\\ 35"
+   },
+   "answer": "B",
+   "solution": "If point B is due east of point A and point C is due north of point B,  $\\angle CBA$  is a right angle. And if  $\\angle BAC = 45^\\circ$ ,  $\\triangle CBA$  is a 45-45-90 triangle. Thus, the lengths of sides  $CB$ ,  $BA$ , and  $AC$  are in the ratio  $1:1:\\sqrt 2$ , and  $CB$  is  $10 \\sqrt 2 \\div \\sqrt 2 = 10$ .\n$\\triangle DBA$  is clearly a right triangle with  $C$  on the side  $DB$ .  $DC$  is 20, so  $DB = DC + CB = 20 + 10 = 30$ .\nBy the Pythagorean Theorem,  $DA = \\sqrt {DB^2 + BA^2} = \\sqrt {30^2 + 10 {}^2} = \\sqrt {1000}$ .\n$31^2 = 961$ , and  $32^2 = 1024$ . Thus,  $\\sqrt {1000}$  must be between  $31$  and  $32$ . The answer is  $\\boxed {B}$ .\n\n---\n\nSource: https://artofproblemsolving.com/wiki/index.$php/2012_AMC_10B_Problems/Problem_12$",
+   "type": "multiple_choice",
+   "points": 6,
+   "figure": null,
+   "classification": {
+    "state": "done",
+    "primary": "plane_geometry.right_triangles.pythagorean_theorem",
+    "tags": [
+     {
+      "id": "plane_geometry.right_triangles.pythagorean_theorem",
+      "weight": 1.0
+     },
+     {
+      "id": "plane_geometry.right_triangles.special_right_triangles",
+      "weight": 0.6
+     }
+    ],
+    "source": "model",
+    "confidence": 0.9,
+    "reviewed": false,
+    "note": "Recognize 45-45-90 triangle to get side lengths, then one Pythagorean application; standard AMC 10 #12 level."
+   },
+   "difficulty": {
+    "level": 9,
+    "scale": "amc20",
+    "band": "easy",
+    "score": 9.2,
+    "method": "hybrid",
+    "confidence": 0.71,
+    "components": [
+     {
+      "method": "prior",
+      "score": 9.58,
+      "weight": 0.35,
+      "confidence": 0.35,
+      "reason": "amc10 5.0->15.0 at t=0.46 = 9.58"
+     },
+     {
+      "method": "llm_rubric",
+      "score": 9.0,
+      "weight": 0.65,
+      "confidence": 0.9
+     }
+    ],
+    "evidence": {
+     "attempts": 0
+    },
+    "reviewed": false,
+    "at": "2026-11-05"
+   }
+  },
+  {
+   "n": 13,
+   "source": "2006 AMC 10B Problem 13",
+   "question": "Joe and JoAnn each bought  $12$  ounces of coffee in a  $16$  ounce cup. Joe drank  $2$  ounces of his coffee and then added  $2$  ounces of cream. JoAnn added  $2$  ounces of cream, stirred the coffee well, and then drank  $2$  ounces. What is the resulting ratio of the amount of cream in Joe's coffee to that in JoAnn's coffee?",
+   "choices": {
+    "A": "$\\frac{6}{7}$",
+    "B": "$\\frac{13}{14}$",
+    "C": "1",
+    "D": "$\\frac{14}{13}$",
+    "E": "$\\frac{7}{6}$"
+   },
+   "answer": "E",
+   "solution": "After drinking and adding cream, Joe's cup has  $2$  ounces of cream.\nAfter adding cream to her cup, JoAnn's cup had  $14$  ounces of liquid. By stirring and then drinking  $2$  ounces out of the  $14$  ounces of liquid, she drank\n $\\frac{2}{14}=\\frac{1}{7}$ th of the cream. So there are  $2\\cdot\\frac{6}{7}=\\frac{12}{7}$  ounces of cream left.\nSo the desired ratio is:  $2 \\div \\frac{12}{7}= \\boxed{\\textbf{(E) }\\frac{7}{6}}$ .\n\n---\n\nSource: https://artofproblemsolving.com/wiki/index.$php/2006_AMC_10B_Problems/Problem_13$",
+   "type": "multiple_choice",
+   "points": 6,
+   "figure": null,
+   "classification": {
+    "state": "done",
+    "primary": "word_problems.ratio_percent.ratio_allocation",
+    "tags": [
+     {
+      "id": "word_problems.ratio_percent.ratio_allocation",
+      "weight": 1.0
+     },
+     {
+      "id": "word_problems.ratio_percent",
+      "weight": 0.6
+     }
+    ],
+    "source": "model",
+    "confidence": 0.85,
+    "reviewed": false,
+    "note": "Two-step proportional tracking: recognize JoAnn removes 1/7 of her cream when drinking 2 of 14 ounces; straightforward ratio computation."
+   },
+   "difficulty": {
+    "level": 9,
+    "scale": "amc20",
+    "band": "easy",
+    "score": 9.35,
+    "method": "hybrid",
+    "confidence": 0.67,
+    "components": [
+     {
+      "method": "prior",
+      "score": 10.0,
+      "weight": 0.35,
+      "confidence": 0.35,
+      "reason": "amc10 5.0->15.0 at t=0.50 = 10.00"
+     },
+     {
+      "method": "llm_rubric",
+      "score": 9.0,
+      "weight": 0.65,
+      "confidence": 0.85
+     }
+    ],
+    "evidence": {
+     "attempts": 0
+    },
+    "reviewed": false,
+    "at": "2026-11-05"
+   }
+  },
+  {
+   "n": 14,
+   "source": "2007 AMC 10A Problem 14",
+   "question": "A triangle with side lengths in the ratio $3 : 4 : 5$ is inscribed in a circle with radius 3. What is the area of the triangle?\n$\\mathrm{(A)}\\ 8.64\\qquad \\mathrm{(B)}\\ 12\\qquad \\mathrm{(C)}\\ 5\\pi\\qquad \\mathrm{(D)}\\ 17.28\\qquad \\mathrm{(E)}\\ 18$",
+   "choices": {
+    "A": "8.64",
+    "B": "12",
+    "C": "$5\\pi$",
+    "D": "17.28",
+    "E": "18"
+   },
+   "answer": "A",
+   "solution": "2007 AMC12A-10.png\nSince 3-4-5 is a Pythagorean triple, the triangle is a right triangle. Since the hypotenuse is a diameter of the circumcircle, the hypotenuse is $2r = 6$ . Then the other legs are $\\frac{24}5=4.8$ and $\\frac{18}5=3.6$ . The area is $\\frac{4.8 \\cdot 3.6}2 = 8.64\\ \\mathrm{(A)}$\n\n---\n\nSource: https://artofproblemsolving.com/wiki/index.$php/2007_AMC_10A_Problems/Problem_14$",
+   "type": "multiple_choice",
+   "points": 6,
+   "figure": null,
+   "classification": {
+    "state": "done",
+    "primary": "plane_geometry.incircle_circumcircle.circumradius",
+    "tags": [
+     {
+      "id": "plane_geometry.incircle_circumcircle.circumradius",
+      "weight": 1.0
+     },
+     {
+      "id": "plane_geometry.right_triangles.special_right_triangles",
+      "weight": 0.6
+     },
+     {
+      "id": "plane_geometry.right_triangles.pythagorean_theorem",
+      "weight": 0.45
+     }
+    ],
+    "source": "model",
+    "confidence": 0.9,
+    "reviewed": false,
+    "note": "Recognize 3-4-5 right triangle, use hypotenuse = 2r to scale sides, then compute area — two routine steps combined."
+   },
+   "difficulty": {
+    "level": 8,
+    "scale": "amc20",
+    "band": "easy",
+    "score": 8.2,
+    "method": "hybrid",
+    "confidence": 0.71,
+    "components": [
+     {
+      "method": "prior",
+      "score": 10.42,
+      "weight": 0.35,
+      "confidence": 0.35,
+      "reason": "amc10 5.0->15.0 at t=0.54 = 10.42"
+     },
+     {
+      "method": "llm_rubric",
+      "score": 7.0,
+      "weight": 0.65,
+      "confidence": 0.9
+     }
+    ],
+    "evidence": {
+     "attempts": 0
+    },
+    "reviewed": false,
+    "at": "2026-11-05"
+   }
+  },
+  {
+   "n": 15,
+   "source": "2023 AMC 10A Problem 15",
+   "question": "An even number of circles are nested, starting with a radius of  $1$  and increasing by  $1$  each time, all sharing a common point. The region between every other circle is shaded, starting with the region inside the circle of radius  $2$  but outside the circle of radius  $1.$  An example showing  $8$  circles is displayed below. What is the least number of circles needed to make the total shaded area at least  $2023\\pi$ ?",
+   "choices": {
+    "A": "46",
+    "B": "48",
+    "C": "56",
+    "D": "60",
+    "E": "64"
+   },
+   "answer": "E",
+   "solution": "Notice that the area of the shaded region is  $(2^2\\pi-1^2\\pi)+(4^2\\pi-3^2\\pi)+(6^2\\pi-5^2\\pi)+ \\cdots + (n^2\\pi-(n-1)^2 \\pi)$  for any even number  $n$ .\nUsing the difference of squares, this simplifies to  $(1+2+3+4+\\cdots+n) \\pi$ . So, we are basically finding the smallest  $n$  such that  $\\frac{n(n+1)}{2}>2023 \\Rightarrow n(n+1) > 4046$ . Since  $60(61) > 60^2=3600$ , the only option higher than  $60$  is  $\\boxed{\\textbf{(E) } 64}$ .\n~MrThinker\n\n---\n\nSource: https://artofproblemsolving.com/wiki/index.$php/2023_AMC_10A_Problems/Problem_15$",
+   "type": "multiple_choice",
+   "points": 6,
+   "figure": {
+    "kind": "svg",
+    "state": "ready",
+    "placement": "prompt",
+    "src": "/figures/amc10a-2023-q15-img1.svg",
+    "mime": "image/svg+xml",
+    "alt": "AMC 10 2023 Problem 15 的几何配图",
+    "width": 504.0,
+    "height": 504.0,
+    "viewBox": "166.409 163.858 220 220",
+    "sha256": "600885451ad9271699a895f521cb1262b6cce42d37f5b6ef22884f380683279c"
+   },
+   "classification": {
+    "state": "done",
+    "primary": "algebra.identities.difference_of_squares_alg",
+    "tags": [
+     {
+      "id": "algebra.identities.difference_of_squares_alg",
+      "weight": 1.0
+     },
+     {
+      "id": "plane_geometry.circle_metrics",
+      "weight": 0.6
+     },
+     {
+      "id": "algebra.sequences.arithmetic_sequence",
+      "weight": 0.45
+     }
+    ],
+    "source": "model",
+    "confidence": 0.85,
+    "reviewed": false,
+    "note": "Key step is recognizing (k²−(k−1)²)=2k−1 to collapse the annular area sum into an arithmetic series, then solving a simple quadratic inequality."
+   },
+   "difficulty": {
+    "level": 10,
+    "scale": "amc20",
+    "band": "medium",
+    "score": 10.29,
+    "method": "hybrid",
+    "confidence": 0.67,
+    "components": [
+     {
+      "method": "prior",
+      "score": 10.83,
+      "weight": 0.35,
+      "confidence": 0.35,
+      "reason": "amc10 5.0->15.0 at t=0.58 = 10.83"
+     },
+     {
+      "method": "llm_rubric",
+      "score": 10.0,
+      "weight": 0.65,
+      "confidence": 0.85
+     }
+    ],
+    "evidence": {
+     "attempts": 0
+    },
+    "reviewed": false,
+    "at": "2026-11-05"
+   }
+  },
+  {
+   "n": 16,
+   "source": "2001 AMC 10 Problem 16",
+   "question": "The mean of three numbers is $10$ more than the least of the numbers and $15$\nless than the greatest. The median of the three numbers is $5$ . What is their\nsum?",
+   "choices": {
+    "A": "5",
+    "B": "20",
+    "C": "25",
+    "D": "30",
+    "E": "36"
+   },
+   "answer": "D",
+   "solution": "Let $m$ be the mean of the three numbers. Then the least of the numbers is $m-10$\nand the greatest is $m + 15$ . The middle of the three numbers is the median, $5$ . So\n $\\dfrac{1}{3}[(m-10) + 5 + (m + 15)] = m$ , which can be solved to get $m=10$ .\nHence, the sum of the three numbers is $3\\cdot 10 = \\boxed{\\textbf{(D) }30}$ .\n\n---\n\nSource: https://artofproblemsolving.com/wiki/index.$php/2001_AMC_10_Problems/Problem_16$",
+   "type": "multiple_choice",
+   "points": 6,
+   "figure": null,
+   "classification": {
+    "state": "done",
+    "primary": "algebra.equations.linear_quadratic",
+    "tags": [
+     {
+      "id": "algebra.equations.linear_quadratic",
+      "weight": 1.0
+     },
+     {
+      "id": "probability.statistics.mean",
+      "weight": 0.6
+     }
+    ],
+    "source": "model",
+    "confidence": 0.85,
+    "reviewed": false,
+    "note": "Set up one linear equation using the mean as variable and median as middle value; straightforward solve."
+   },
+   "difficulty": {
+    "level": 10,
+    "scale": "amc20",
+    "band": "medium",
+    "score": 10.44,
+    "method": "hybrid",
+    "confidence": 0.67,
+    "components": [
+     {
+      "method": "prior",
+      "score": 11.25,
+      "weight": 0.35,
+      "confidence": 0.35,
+      "reason": "amc10 5.0->15.0 at t=0.62 = 11.25"
+     },
+     {
+      "method": "llm_rubric",
+      "score": 10.0,
+      "weight": 0.65,
+      "confidence": 0.85
+     }
+    ],
+    "evidence": {
+     "attempts": 0
+    },
+    "reviewed": false,
+    "at": "2026-11-05"
+   }
+  },
+  {
+   "n": 17,
+   "source": "2019 AMC 10B Problem 17",
+   "question": "A red ball and a green ball are randomly and independently tossed into bins numbered with the positive integers so that for each ball, the probability that it is tossed into bin  $k$  is  $2^{-k}$  for  $k = 1,2,3....$   What is the probability that the red ball is tossed into a higher-numbered bin than the green ball?\n $\\textbf{(A) } \\frac{1}{4} \\qquad\\textbf{(B) } \\frac{2}{7} \\qquad\\textbf{(C) } \\frac{1}{3} \\qquad\\textbf{(D) } \\frac{3}{8} \\qquad\\textbf{(E) } \\frac{3}{7}$",
+   "choices": {
+    "A": "$\\frac{1}{4}$",
+    "B": "$\\frac{2}{7}$",
+    "C": "$\\frac{1}{3}$",
+    "D": "$\\frac{3}{8}$",
+    "E": "$\\frac{3}{7}$"
+   },
+   "answer": "C",
+   "solution": "Solution 1By symmetry, the probability of the red ball landing in a higher-numbered bin is the same as the probability of the green ball landing in a higher-numbered bin. Clearly, the probability of both landing in the same bin is  $\\sum_{k=1}^{\\infty}{2^{-k} \\cdot 2^{-k}} = \\sum_{k=1}^{\\infty}2^{-2k} = \\frac{1}{3}$  (by the geometric series sum formula). Therefore, since the other two probabilities have to be the same, they have to be  $\\frac{1-\\frac{1}{3}}{2} = \\boxed{\\textbf{(C) } \\frac{1}{3}}$ .\n\nNote: the formula is  $\\frac{a_{1}}{1-r}$  where  $a_{1}$  is the first term and  $r$  is the common ratio.\nDerivation of the geometric series sum formula:\nLet  $S = S=a_{1}+a_{1}r+a_{1}r^{2}+a_{1}r^{3}+...$  and so on to infinity.\nThen  $rS=a_{1}r+a_{1}r^{2}+a_{1}r^{3}+...$  and so on to infinity. Notice that the terms in the second expression are the same as all the terms in the first EXCEPT for  $a_{1}$ .\nSubtract  $S-rS=a_{1}$ , factor  $S\\left(1-r\\right)=a_{1}$ , and finally  $S=\\frac{a_{1}}{1-r}$ .\nNote: The formula only works if  $r<1$ ; otherwise, the series will diverge to infinity or negative infinity.\n~JH. L\n\n---\n\nSource: https://artofproblemsolving.com/wiki/index.$php/2019_AMC_10B_Problems/Problem_17$",
+   "type": "multiple_choice",
+   "points": 6,
+   "figure": null,
+   "classification": {
+    "state": "done",
+    "primary": "probability.classical_probability",
+    "tags": [
+     {
+      "id": "probability.classical_probability",
+      "weight": 1.0
+     },
+     {
+      "id": "methods.symmetry",
+      "weight": 0.6
+     },
+     {
+      "id": "algebra.sequences.geometric_sequence",
+      "weight": 0.45
+     }
+    ],
+    "source": "model",
+    "confidence": 0.85,
+    "reviewed": false,
+    "note": "Symmetry reduces the problem to computing a geometric series for P(same bin); one key insight plus routine computation."
+   },
+   "difficulty": {
+    "level": 11,
+    "scale": "amc20",
+    "band": "medium",
+    "score": 11.23,
+    "method": "hybrid",
+    "confidence": 0.67,
+    "components": [
+     {
+      "method": "prior",
+      "score": 11.67,
+      "weight": 0.35,
+      "confidence": 0.35,
+      "reason": "amc10 5.0->15.0 at t=0.67 = 11.67"
+     },
+     {
+      "method": "llm_rubric",
+      "score": 11.0,
+      "weight": 0.65,
+      "confidence": 0.85
+     }
+    ],
+    "evidence": {
+     "attempts": 0
+    },
+    "reviewed": false,
+    "at": "2026-11-05"
+   }
+  },
+  {
+   "n": 18,
+   "source": "2002 AMC 10B Problem 18",
+   "question": "Four distinct  circles  are drawn in a  plane . What is the maximum number of points where at least two of the circles intersect?\n$\\mathrm{(A)}\\ 8 \\qquad\\mathrm{(B)}\\ 9 \\qquad\\mathrm{(C)}\\ 10 \\qquad\\mathrm{(D)}\\ 12 \\qquad\\mathrm{(E)}\\ 16$",
+   "choices": {
+    "A": "8",
+    "B": "9",
+    "C": "10",
+    "D": "12",
+    "E": "16"
+   },
+   "answer": "D",
+   "solution": "For any given pair of circles, they can intersect at most  $2$  times. Since there are  ${4\\choose 2} = 6$  pairs of circles, the maximum number of possible intersections is  $6 \\cdot 2 = 12$ . We can construct such a situation as below, so the answer is  $\\boxed{\\mathrm{(D)}\\ 12}$ .\n\n---\n\nSource: https://artofproblemsolving.com/wiki/index.$php/2002_AMC_10B_Problems/Problem_18$",
+   "type": "multiple_choice",
+   "points": 6,
+   "figure": null,
+   "classification": {
+    "state": "done",
+    "primary": "combinatorics.counting_principles",
+    "tags": [
+     {
+      "id": "combinatorics.counting_principles",
+      "weight": 1.0
+     },
+     {
+      "id": "combinatorics.counting_principles.multiplication_principle",
+      "weight": 0.6
+     },
+     {
+      "id": "plane_geometry.circles_and_angles",
+      "weight": 0.45
+     }
+    ],
+    "source": "model",
+    "confidence": 0.85,
+    "reviewed": false,
+    "note": "Count C(4,2)=6 pairs, multiply by 2 intersections per pair; two ideas combined but no deep insight needed."
+   },
+   "difficulty": {
+    "level": 9,
+    "scale": "amc20",
+    "band": "easy",
+    "score": 8.78,
+    "method": "hybrid",
+    "confidence": 0.67,
+    "components": [
+     {
+      "method": "prior",
+      "score": 12.08,
+      "weight": 0.35,
+      "confidence": 0.35,
+      "reason": "amc10 5.0->15.0 at t=0.71 = 12.08"
+     },
+     {
+      "method": "llm_rubric",
+      "score": 7.0,
+      "weight": 0.65,
+      "confidence": 0.85
+     }
+    ],
+    "evidence": {
+     "attempts": 0
+    },
+    "reviewed": false,
+    "at": "2026-11-05"
+   }
+  },
+  {
+   "n": 19,
+   "source": "2012 AMC 10B Problem 19",
+   "question": "In rectangle  $ABCD$ ,  $AB=6$ ,  $AD=30$ , and  $G$  is the midpoint of  $\\overline{AD}$ . Segment  $AB$  is extended 2 units beyond  $B$  to point  $E$ , and  $F$  is the intersection of  $\\overline{ED}$  and  $\\overline{BC}$ . What is the area of quadrilateral  $BFDG$ ?",
+   "choices": {
+    "A": "$\\frac{133}{2}$",
+    "B": "67",
+    "C": "$\\frac{135}{2}$",
+    "D": "68",
+    "E": "$\\frac{137}{2}$"
+   },
+   "answer": "C",
+   "solution": "Note that the area of  $BFDG$  equals the area of  $ABCD-\\triangle AGB-\\triangle DCF$ .\nSince  $AG=\\frac{AD}{2}=15,$   $\\triangle AGB=\\frac{15\\times 6}{2}=45$ . Now,  $\\triangle AED\\sim \\triangle BEF$ , so  $\\frac{AE}{BE}=4=\\frac{AD}{BF}=\\frac{30}{BF}\\implies BF=7.5$  and  $FC=22.5,$  so  $\\triangle DCF=\\frac{22.5\\times6}{2}=\\frac{135}{2}.$\nTherefore,  $BFDG=ABCD-\\triangle AGB-\\triangle DCF \\\\ =180-45-\\frac{135}{2} \\\\ =\\boxed{\\frac{135}{2}}$2}}\nhence our answer is  $\\fbox{C}$\n\n---\n\nSource: https://artofproblemsolving.com/wiki/index.$php/2012_AMC_10B_Problems/Problem_19$",
+   "type": "multiple_choice",
+   "points": 6,
+   "figure": null,
+   "classification": {
+    "state": "done",
+    "primary": "plane_geometry.similarity",
+    "tags": [
+     {
+      "id": "plane_geometry.similarity",
+      "weight": 1.0
+     },
+     {
+      "id": "plane_geometry.triangle_area",
+      "weight": 0.6
+     },
+     {
+      "id": "methods.algebra_geometry_duality",
+      "weight": 0.45
+     }
+    ],
+    "source": "model",
+    "confidence": 0.85,
+    "reviewed": false,
+    "note": "Recognizing similar triangles to find BF, then area subtraction from the rectangle; standard multi-step geometry at AMC 10 #19 level."
+   },
+   "difficulty": {
+    "level": 12,
+    "scale": "amc20",
+    "band": "medium",
+    "score": 11.53,
+    "method": "hybrid",
+    "confidence": 0.67,
+    "components": [
+     {
+      "method": "prior",
+      "score": 12.5,
+      "weight": 0.35,
+      "confidence": 0.35,
+      "reason": "amc10 5.0->15.0 at t=0.75 = 12.50"
+     },
+     {
+      "method": "llm_rubric",
+      "score": 11.0,
+      "weight": 0.65,
+      "confidence": 0.85
+     }
+    ],
+    "evidence": {
+     "attempts": 0
+    },
+    "reviewed": false,
+    "at": "2026-11-05"
+   }
+  },
+  {
+   "n": 20,
+   "source": "2019 AMC 10A Problem 20",
+   "question": "The numbers  $1,2,\\dots,9$  are randomly placed into the  $9$  squares of a  $3 \\times 3$  grid. Each square gets one number, and each of the numbers is used once. What is the probability that the sum of the numbers in each row and each column is odd?",
+   "choices": {
+    "A": "$\\frac{1}{21}$",
+    "B": "$\\frac{1}{14}$",
+    "C": "$\\frac{5}{63}$",
+    "D": "$\\frac{2}{21}$",
+    "E": "$\\frac{1}{7}$"
+   },
+   "answer": "B",
+   "solution": "Solution 1Note that odd sums can only be formed by  $(e,e,o)$  or  $(o,o,o),$  so we focus on placing the evens: we need to have each even be with another even in each row/column. Because there are only  $5$  odd numbers overall, we can only have  $1$   $(o,o,o)$  row and  $1$   $(o,o,o)$  column. It can be seen that there are  $3 \\cdot 3 = 9$  ways to do this. There  are then  $5!$  ways to permute the odd numbers, and  $4!$  ways to permute the even numbers, thus giving the answer as  $\\frac{9 \\cdot 5! \\cdot 4!}{9!}=\\boxed{\\textbf{(B) }\\frac{1}{14}}$ .\n~Petallstorm\n(Minor edits by JeffersonJ and $monkey_land)$\n\n---\n\nSource: https://artofproblemsolving.com/wiki/index.$php/2019_AMC_10A_Problems/Problem_20$",
+   "type": "multiple_choice",
+   "points": 6,
+   "figure": null,
+   "classification": {
+    "state": "done",
+    "primary": "number_theory.parity",
+    "tags": [
+     {
+      "id": "number_theory.parity",
+      "weight": 1.0
+     },
+     {
+      "id": "probability.classical_probability",
+      "weight": 0.6
+     },
+     {
+      "id": "combinatorics.counting_principles",
+      "weight": 0.45
+     }
+    ],
+    "source": "model",
+    "confidence": 0.8,
+    "reviewed": false,
+    "note": "Key insight is recognizing only one all-odd row and one all-odd column work, giving 9 valid parity patterns; counting is then straightforward."
+   },
+   "difficulty": {
+    "level": 12,
+    "scale": "amc20",
+    "band": "medium",
+    "score": 12.32,
+    "method": "hybrid",
+    "confidence": 0.64,
+    "components": [
+     {
+      "method": "prior",
+      "score": 12.92,
+      "weight": 0.35,
+      "confidence": 0.35,
+      "reason": "amc10 5.0->15.0 at t=0.79 = 12.92"
+     },
+     {
+      "method": "llm_rubric",
+      "score": 12.0,
+      "weight": 0.65,
+      "confidence": 0.8
+     }
+    ],
+    "evidence": {
+     "attempts": 0
+    },
+    "reviewed": false,
+    "at": "2026-11-05"
+   }
+  },
+  {
+   "n": 21,
+   "source": "2007 AMC 10B Problem 21",
+   "question": "Right  $\\triangle ABC$  has  $AB=3, BC=4,$  and  $AC=5.$  Square  $XYZW$  is inscribed in  $\\triangle ABC$  with  $X$  and  $Y$  on  $\\overline{AC}, W$  on  $\\overline{AB},$  and  $Z$  on  $\\overline{BC}.$  What is the side length of the square?",
+   "choices": {
+    "A": "$\\frac{3}{2}$",
+    "B": "$\\frac{60}{37}$",
+    "C": "$\\frac{12}{7}$",
+    "D": "$\\frac{23}{13}$",
+    "E": "2"
+   },
+   "answer": "B",
+   "solution": "There are lots of similar triangles in the diagram, but we will only use  $\\triangle WBZ \\sim \\triangle ABC.$  If  $h$  is the altitude from  $B$  to  $AC$  and  $s$  is the sidelength of the square, then  $h-s$  is the altitude from  $B$  to  $WZ.$  By similar triangles,\n  $\\frac{h-s}{h}=\\frac{s}{5}\\\\ 5(h-s)=hs\\\\ 5h-5s=hs\\\\ 5h=s(h+5)\\\\ s=\\frac{5h}{h+5}${h+5} \nFind the length of the altitude of  $\\triangle ABC.$  Since it is a right triangle, the area of  $\\triangle ABC$  is  $\\frac{1}{2}(3)(4) = 6.$\nThe area can also be expressed as  $\\frac{1}{2}(5)(h),$  so  $\\frac{5}{2}h=6 \\longrightarrow h=2.4.$\nSubstitute back into  $s.$\n$s=\\frac{5h}{h+5} = \\frac{12}{7.4} = \\boxed{\\mathrm{(B) \\ } \\frac{60}{37}}$\n\n---\n\nSource: https://artofproblemsolving.com/wiki/index.$php/2007_AMC_10B_Problems/Problem_21$",
+   "type": "multiple_choice",
+   "points": 6,
+   "figure": null,
+   "classification": {
+    "state": "done",
+    "primary": "plane_geometry.similarity",
+    "tags": [
+     {
+      "id": "plane_geometry.similarity",
+      "weight": 1.0
+     },
+     {
+      "id": "plane_geometry.right_triangles",
+      "weight": 0.6
+     },
+     {
+      "id": "plane_geometry.triangle_area",
+      "weight": 0.45
+     }
+    ],
+    "source": "model",
+    "confidence": 0.8,
+    "reviewed": false,
+    "note": "Three steps: find altitude via area, recognize similar triangles WBZ~ABC, solve proportion; standard but requires the right setup."
+   },
+   "difficulty": {
+    "level": 12,
+    "scale": "amc20",
+    "band": "medium",
+    "score": 12.47,
+    "method": "hybrid",
+    "confidence": 0.64,
+    "components": [
+     {
+      "method": "prior",
+      "score": 13.33,
+      "weight": 0.35,
+      "confidence": 0.35,
+      "reason": "amc10 5.0->15.0 at t=0.83 = 13.33"
+     },
+     {
+      "method": "llm_rubric",
+      "score": 12.0,
+      "weight": 0.65,
+      "confidence": 0.8
+     }
+    ],
+    "evidence": {
+     "attempts": 0
+    },
+    "reviewed": false,
+    "at": "2026-11-05"
+   }
+  },
+  {
+   "n": 22,
+   "source": "2004 AMC 10A Problem 22",
+   "question": "Square   $ABCD$  has side length  $2$ . A  semicircle  with  diameter   $\\overline{AB}$  is constructed inside the square, and the  tangent  to the semicircle from  $C$  intersects side  $\\overline{AD}$  at  $E$ . What is the length of  $\\overline{CE}$ ?\n\n$\\mathrm{(A) \\ } \\frac{2+\\sqrt{5}}{2} \\qquad \\mathrm{(B) \\ } \\sqrt{5} \\qquad \\mathrm{(C) \\ } \\sqrt{6} \\qquad \\mathrm{(D) \\ } \\frac{5}{2} \\qquad \\mathrm{(E) \\ } 5-\\sqrt{5}$",
+   "choices": {
+    "A": "$\\frac{2+\\sqrt{5}}{2}$",
+    "B": "$\\sqrt{5}$",
+    "C": "$\\sqrt{6}$",
+    "D": "$\\frac{5}{2}$",
+    "E": "$5-\\sqrt{5}$"
+   },
+   "answer": "D",
+   "solution": "Solution 1\nLet the point of tangency be  $F$ . By the  Two Tangent Theorem   $BC = FC = 2$  and  $AE = EF = x$ . Thus  $DE = 2-x$ . The  Pythagorean Theorem  on  $\\triangle CDE$  yields\n $DE^2 + CD^2 = CE^2\\\\ (2-x)^2 + 2^2 = (2+x)^2\\\\ x^2 - 4x + 8 = x^2 + 4x + 4\\\\ x = \\frac{1}{2}$}{2}\nHence  $CE = FC + x = \\frac{5}{2} \\Rightarrow\\boxed{\\mathrm{(D)}\\ \\frac{5}{2}}$ .\n\n---\n\nSource: https://artofproblemsolving.com/wiki/index.$php/2004_AMC_10A_Problems/Problem_22$",
+   "type": "multiple_choice",
+   "points": 6,
+   "figure": null,
+   "classification": {
+    "state": "done",
+    "primary": "plane_geometry.right_triangles.pythagorean_theorem",
+    "tags": [
+     {
+      "id": "plane_geometry.right_triangles.pythagorean_theorem",
+      "weight": 1.0
+     }
+    ],
+    "source": "model",
+    "confidence": 0.8,
+    "reviewed": false,
+    "note": "Key observation is the Two Tangent Theorem to set up the equation; then a routine Pythagorean application."
+   },
+   "difficulty": {
+    "level": 13,
+    "scale": "amc20",
+    "band": "medium",
+    "score": 12.61,
+    "method": "hybrid",
+    "confidence": 0.64,
+    "components": [
+     {
+      "method": "prior",
+      "score": 13.75,
+      "weight": 0.35,
+      "confidence": 0.35,
+      "reason": "amc10 5.0->15.0 at t=0.88 = 13.75"
+     },
+     {
+      "method": "llm_rubric",
+      "score": 12.0,
+      "weight": 0.65,
+      "confidence": 0.8
+     }
+    ],
+    "evidence": {
+     "attempts": 0
+    },
+    "reviewed": false,
+    "at": "2026-11-05"
+   }
+  },
+  {
+   "n": 23,
+   "source": "2010 AMC 10A Problem 23",
+   "question": "Each of  $2010$  boxes in a line contains a single red marble, and for  $1 \\le k \\le 2010$ , the box in the  $k\\text{th}$  position also contains  $k$  white marbles. Isabella begins at the first box and successively draws a single marble at random from each box, in order. She stops when she first draws a red marble. Let  $P(n)$  be the probability that Isabella stops after drawing exactly  $n$  marbles. What is the smallest value of  $n$  for which  $P(n) < \\frac{1}{2010}$ ?",
+   "choices": {
+    "A": "45",
+    "B": "63",
+    "C": "64",
+    "D": "201",
+    "E": "1005"
+   },
+   "answer": "A",
+   "solution": "The probability of drawing a white marble from box  $k$  is  $\\frac{k}{k + 1}$ , and the probability of drawing a red marble from box  $k$  is  $\\frac{1}{k+1}$ .\nTo stop after drawing  $n$  marbles, we must draw a white marble from boxes  $1, 2, \\ldots, n-1,$  and draw a red marble from box  $n.$  Thus,  $P(n) = \\left(\\frac{1}{2} \\cdot \\frac{2}{3} \\cdot \\frac{3}{4} \\cdots \\frac {n - 1}{n}\\right) \\cdot \\frac{1}{n +1} = \\frac{1}{n (n + 1)}.$\nSo, we must have  $\\frac{1}{n(n + 1)} < \\frac{1}{2010}$  or  $n(n+1) > 2010.$\nSince  $n(n+1)$  increases as  $n$  increases, we can simply test values of  $n$ ; after some trial and error, we get that the minimum value of  $n$  is  $\\boxed{\\textbf{(A) }45}$ , since  $45(46) = 2070$  but  $44(45) = 1980.$\n\n---\n\nSource: https://artofproblemsolving.com/wiki/index.$php/2010_AMC_10A_Problems/Problem_23$",
+   "type": "multiple_choice",
+   "points": 6,
+   "figure": null,
+   "classification": {
+    "state": "done",
+    "primary": "probability.independence.independent_events",
+    "tags": [
+     {
+      "id": "probability.independence.independent_events",
+      "weight": 1.0
+     },
+     {
+      "id": "algebra.sequences.telescoping",
+      "weight": 0.6
+     }
+    ],
+    "source": "model",
+    "confidence": 0.85,
+    "reviewed": false,
+    "note": "Set up the product of independent probabilities, recognize the telescoping to get 1/(n(n+1)), then solve the simple inequality."
+   },
+   "difficulty": {
+    "level": 13,
+    "scale": "amc20",
+    "band": "medium",
+    "score": 13.41,
+    "method": "hybrid",
+    "confidence": 0.67,
+    "components": [
+     {
+      "method": "prior",
+      "score": 14.17,
+      "weight": 0.35,
+      "confidence": 0.35,
+      "reason": "amc10 5.0->15.0 at t=0.92 = 14.17"
+     },
+     {
+      "method": "llm_rubric",
+      "score": 13.0,
+      "weight": 0.65,
+      "confidence": 0.85
+     }
+    ],
+    "evidence": {
+     "attempts": 0
+    },
+    "reviewed": false,
+    "at": "2026-11-05"
+   }
+  },
+  {
+   "n": 24,
+   "source": "2000 AMC 10 Problem 24",
+   "question": "Let  $f$  be a function for which  $f\\left(\\dfrac{x}{3}\\right) = x^2 + x + 1$ . Find the sum of all values of  $z$  for which  $f(3z) = 7$ .\n$\\text {(A)}\\ -1/3 \\qquad \\text {(B)}\\ -1/9 \\qquad \\text {(C)}\\ 0 \\qquad \\text {(D)}\\ 5/9 \\qquad \\text {(E)}\\ 5/3$",
+   "choices": {
+    "A": "-1/3",
+    "B": "-1/9",
+    "C": "0",
+    "D": "5/9",
+    "E": "$5/3\\]$"
+   },
+   "answer": "B",
+   "solution": "Let  $y = \\frac{x}{3}$ ; then  $f(y) = (3y)^2 + 3y + 1 = 9y^2 + 3y+1$ . Thus  $f(3z)-7=81z^2+9z-6=3(9z-2)(3z+1)=0$ , and  $z = -\\frac{1}{3}, \\frac{2}{9}$ . These sum up to  $\\boxed{\\textbf{(B) }-\\frac19}$ .\n\n---\n\nSource: https://artofproblemsolving.com/wiki/index.$php/2000_AMC_10_Problems/Problem_24$",
+   "type": "multiple_choice",
+   "points": 6,
+   "figure": null,
+   "classification": {
+    "state": "done",
+    "primary": "algebra.functions",
+    "tags": [
+     {
+      "id": "algebra.functions",
+      "weight": 1.0
+     },
+     {
+      "id": "algebra.equations.linear_quadratic",
+      "weight": 0.6
+     },
+     {
+      "id": "algebra.substitution.whole_substitution",
+      "weight": 0.45
+     }
+    ],
+    "source": "model",
+    "confidence": 0.8,
+    "reviewed": false,
+    "note": "One substitution to find f(t), then solve a quadratic; two clean steps with a mild insight."
+   },
+   "difficulty": {
+    "level": 12,
+    "scale": "amc20",
+    "band": "medium",
+    "score": 12.25,
+    "method": "hybrid",
+    "confidence": 0.64,
+    "components": [
+     {
+      "method": "prior",
+      "score": 14.58,
+      "weight": 0.35,
+      "confidence": 0.35,
+      "reason": "amc10 5.0->15.0 at t=0.96 = 14.58"
+     },
+     {
+      "method": "llm_rubric",
+      "score": 11.0,
+      "weight": 0.65,
+      "confidence": 0.8
+     }
+    ],
+    "evidence": {
+     "attempts": 0
+    },
+    "reviewed": false,
+    "at": "2026-11-05"
+   }
+  },
+  {
+   "n": 25,
+   "source": "2003 AMC 10B Problem 25",
+   "question": "How many distinct four-digit numbers are divisible by  $3$  and have  $23$  as their last two digits?",
+   "choices": {
+    "A": "27",
+    "B": "30",
+    "C": "33",
+    "D": "81",
+    "E": "90"
+   },
+   "answer": "B",
+   "solution": "Solution 1 (Slow)To test if a number is divisible by three, you add up the digits of the number. If the sum is divisible by three, then the original number is a multiple of three. If the sum is too large, you can repeat the process until you can tell whether it is a multiple of three. This is the basis for the solution. Since the last two digits are  $23$ , the sum of the digits is  $2+3 = 5$  (therefore it is not divisible by three). However certain numbers can be added to make the sum of the digits a multiple of three.\n$5+1 = 6$ ,\n$5+4 = 9$ , and so on.\nHowever since the largest four-digit number ending with  $23$  is  $9923$ , the maximum sum is\n$5+18 = 23$ .\nUsing that process we can fairly quickly compile a list of the sum of the first two digits of the number.\n$\\{1, 4, 7, 10, 13, 16\\}$\nNow we find all the two-digit numbers that have any of the sums shown above. We can do this by listing all the two digit numbers  $xy$  in separate cases.\n$I. x+y = 1, \\{10\\} = 1$\n $II. x+y = 4, \\{13, 22, 31, 40\\} = 4$\n $III. x+y = 7, \\{16, 25, 34, 43, 52, 61, 70\\} = 7$\n $IV. x+y = 10, \\{19, 28, 37, 46, 55, 64, 73, 82, 91\\} = 9$\n $V. x+y = 13, \\{49, 58, 67, 76, 85, 94\\} = 6$\n $VI. x+y = 16, \\{79, 88, 97\\} = 3$\nAnd finally, we add the number of elements in each set.\n$1+4+7+9+6+3 = \\boxed{\\textbf{(B)}\\ 30}$\n\n---\n\nSource: https://artofproblemsolving.com/wiki/index.$php/2003_AMC_10B_Problems/Problem_25$",
+   "type": "multiple_choice",
+   "points": 6,
+   "figure": null,
+   "classification": {
+    "state": "done",
+    "primary": "number_theory.divisibility.divisibility_test",
+    "tags": [
+     {
+      "id": "number_theory.divisibility.divisibility_test",
+      "weight": 1.0
+     },
+     {
+      "id": "number_theory.divisibility",
+      "weight": 0.6
+     },
+     {
+      "id": "combinatorics.counting_principles.counting_by_cases",
+      "weight": 0.45
+     }
+    ],
+    "source": "model",
+    "confidence": 0.85,
+    "reviewed": false,
+    "note": "Apply divisibility-by-3 digit-sum rule, then count pairs (a,b) with a+b≡1 mod 3; systematic but straightforward counting."
+   },
+   "difficulty": {
+    "level": 14,
+    "scale": "amc20",
+    "band": "medium",
+    "score": 13.7,
+    "method": "hybrid",
+    "confidence": 0.67,
+    "components": [
+     {
+      "method": "prior",
+      "score": 15.0,
+      "weight": 0.35,
+      "confidence": 0.35,
+      "reason": "amc10 5.0->15.0 at t=1.00 = 15.00"
+     },
+     {
+      "method": "llm_rubric",
+      "score": 13.0,
+      "weight": 0.65,
+      "confidence": 0.85
+     }
+    ],
+    "evidence": {
+     "attempts": 0
+    },
+    "reviewed": false,
+    "at": "2026-11-05"
+   }
+  }
+ ]
+}

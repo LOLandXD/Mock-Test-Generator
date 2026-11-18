@@ -1,7 +1,10 @@
 import { useEffect, useRef, useState } from 'react'
-import { Link, useNavigate, useParams } from 'react-router-dom'
+import { Link, useLocation, useNavigate, useParams } from 'react-router-dom'
 import { AutoMath } from '../components/AutoMath'
+import { ReportIssue } from '../components/ReportIssue'
+import { AlertTriangle, Check, Clock, Tag } from '../components/icons'
 import { api } from '../lib/api'
+import type { Taxonomy } from '../lib/api'
 import { useI18n } from '../lib/i18n'
 
 interface Question {
@@ -15,6 +18,28 @@ interface Question {
   solution_zh?: string
   type?: string
   points?: number
+  /** Figure-bank questions carry an SVG rendered next to the prompt. */
+  figure?: {
+    src?: string
+    alt?: string
+    width?: number
+    height?: number
+    kind?: string
+    placement?: string
+  }
+  /** Paper format v1.1 annotation: primary topic + extra tags (taxonomy ids). */
+  classification?: {
+    state?: string
+    primary?: string | null
+    tags?: { id: string; weight?: number }[]
+  }
+  /** 1-20 difficulty from the classifier (20 = average AMC 12 problem 25). */
+  difficulty?: {
+    level?: number
+    band?: string
+    score?: number
+    scale?: string
+  }
 }
 
 interface TestData {
@@ -23,11 +48,37 @@ interface TestData {
   competition: string
   instructions: string
   time_limit_min: number
+  /** 1 = classic bank, 2 = figure bank. Absent on legacy papers. */
+  bank_version?: number
   questions: Question[]
 }
 
 const fmtTime = (s: number) =>
   `${String(Math.floor(s / 60)).padStart(2, '0')}:${String(s % 60).padStart(2, '0')}`
+
+/** Classifier band -> badge class ('mid' is the name the css already uses). */
+function bandClass(band?: string): 'easy' | 'mid' | 'hard' | null {
+  if (band === 'easy') return 'easy'
+  if (band === 'medium' || band === 'mid') return 'mid'
+  if (band === 'hard') return 'hard'
+  return null
+}
+
+/** Taxonomy id -> label in the current language (falls back to the raw id). */
+function topicLabel(tax: Taxonomy | null, id: string, lang: string): string {
+  const node = tax?.nodes[id]
+  if (!node) return id
+  return lang === 'zh' ? node.zh : node.en
+}
+
+// The taxonomy is static: fetch it once per page load and share the labels.
+let taxonomyPromise: Promise<Taxonomy | null> | null = null
+function fetchTaxonomy(): Promise<Taxonomy | null> {
+  if (!taxonomyPromise) {
+    taxonomyPromise = api.taxonomy().catch(() => null)
+  }
+  return taxonomyPromise
+}
 
 /** Legacy difficulty(): olympiad day format (P1 easy, P2–4 medium, P5–6 hard), else by ratio. */
 function difficultyClass(n: number, total: number): 'easy' | 'mid' | 'hard' {
@@ -63,6 +114,8 @@ function wrapMath(v: string, withCaret = false): string {
 
 interface QuestionCardProps {
   q: Question
+  /** Topic labels; null while loading or when the bank is unclassified. */
+  tax: Taxonomy | null
   total: number
   value?: string
   submitted: boolean
@@ -72,10 +125,35 @@ interface QuestionCardProps {
   onReveal: (n: number) => void
 }
 
-function QuestionCard({ q, total, value, submitted, revealed, onPick, onType, onReveal }: QuestionCardProps) {
+function QuestionCard({
+  q,
+  tax,
+  total,
+  value,
+  submitted,
+  revealed,
+  onPick,
+  onType,
+  onReveal,
+}: QuestionCardProps) {
   const { t, lang } = useI18n()
-  const cls = difficultyClass(q.n, total)
+  // Classified questions carry a real level; legacy papers fall back to the
+  // old position-based guess.
+  const legacyCls = difficultyClass(q.n, total)
+  const cls = bandClass(q.difficulty?.band) ?? legacyCls
   const label = t(cls === 'easy' ? 'easy' : cls === 'mid' ? 'medium' : 'hard')
+  const level = q.difficulty?.level
+  const diffText = typeof level === 'number' ? `L${level} · ${label}` : label
+  const diffTip =
+    typeof level === 'number'
+      ? `${t('difficulty')} ${level}${q.difficulty?.scale === 'amc20' ? '/20' : ''}`
+      : label
+  const primary = q.classification?.primary ?? null
+  const tagIds = (q.classification?.tags ?? []).map((tag) => tag.id)
+  const topicText = primary ? topicLabel(tax, primary, lang) : ''
+  const topicTip = tagIds.length
+    ? tagIds.map((id) => topicLabel(tax, id, lang)).join(' / ')
+    : topicText
   const points = q.points || 1
   const showSolution = submitted || revealed
   const ok = submitted && grade(q, value)
@@ -90,17 +168,37 @@ function QuestionCard({ q, total, value, submitted, revealed, onPick, onType, on
         <span className="qnum">
           {t('problem')} {q.n}
         </span>
-        <span style={{ display: 'flex', gap: 6 }}>
-          <span className={`diff ${cls}`}>{label}</span>
+        <span style={{ display: 'flex', gap: 6, flexWrap: 'wrap', justifyContent: 'flex-end' }}>
+          {primary && (
+            <span className="badge topic" title={topicTip}>
+              <Tag size={12} aria-hidden="true" />
+              {topicText}
+            </span>
+          )}
+          <span className={`diff ${cls}`} title={diffTip}>
+            {diffText}
+          </span>
           <span className="badge">
             {points} {points > 1 ? t('pts') : t('pt')}
           </span>
           <span className="badge">
             {q.type === 'proof' || q.type === 'numeric' ? t('realProblem') : t('modifiedFrom')} {q.source}
           </span>
+          <ReportIssue compact target={{ qid: q.source ? `${q.source}#${q.n}` : `problem-${q.n}`, source: q.source }} />
         </span>
       </div>
       <AutoMath html={questionHtml} className="qtext" />
+      {q.figure?.src && (
+        <figure className="qfig">
+          <img
+            src={q.figure.src}
+            alt={q.figure.alt ?? ''}
+            width={q.figure.width}
+            height={q.figure.height}
+            loading="lazy"
+          />
+        </figure>
+      )}
       {q.type === 'proof' && !showSolution && (
         <button className="btn secondary" type="button" onClick={() => onReveal(q.n)}>
           {t('showSolution')}
@@ -148,20 +246,34 @@ export function TestRunner() {
   const { id = '' } = useParams()
   const { t } = useI18n()
   const navigate = useNavigate()
+  const location = useLocation()
+  // Set by NewTest when the server could not use the figure bank.
+  const fellBack = Boolean((location.state as { fallback?: boolean } | null)?.fallback)
 
   const [test, setTest] = useState<TestData | null>(null)
   const [loadError, setLoadError] = useState<string | null>(null)
   const [answers, setAnswers] = useState<Record<number, string>>({})
   const [submitted, setSubmitted] = useState(false)
   const [result, setResult] = useState<{ score: number; total: number } | null>(null)
-  const [savedNote, setSavedNote] = useState<string | null>(null)
+  const [savedNote, setSavedNote] = useState<{ tone: 'ok' | 'err' | 'wait'; text: string } | null>(null)
   const [revealed, setRevealed] = useState<Set<number>>(new Set())
   const [left, setLeft] = useState(0)
+  const [tax, setTax] = useState<Taxonomy | null>(null)
 
   const deadlineRef = useRef(0)
   const startedAtRef = useRef(0)
   const submittedRef = useRef(false)
   const submitRef = useRef<() => void>(() => {})
+
+  useEffect(() => {
+    let alive = true
+    fetchTaxonomy().then((doc) => {
+      if (alive) setTax(doc)
+    })
+    return () => {
+      alive = false
+    }
+  }, [])
 
   useEffect(() => {
     let alive = true
@@ -187,13 +299,16 @@ export function TestRunner() {
     setSubmitted(true)
     let score = 0
     let totalPoints = 0
+    const details: { n: number; given: string; ok: boolean }[] = []
     for (const q of test.questions) {
       const pts = q.points || 1
       totalPoints += pts
-      if (grade(q, answers[q.n])) score += pts
+      const ok = grade(q, answers[q.n])
+      if (ok) score += pts
+      details.push({ n: q.n, given: (answers[q.n] ?? '').trim(), ok })
     }
     setResult({ score, total: totalPoints })
-    setSavedNote(t('saving'))
+    setSavedNote({ tone: 'wait', text: t('saving') })
     const duration_s = Math.round((Date.now() - startedAtRef.current) / 1000)
     api
       .submitResult({
@@ -204,9 +319,10 @@ export function TestRunner() {
         total: totalPoints,
         answered: Object.keys(answers).length,
         duration_s,
+        details,
       })
-      .then((d) => setSavedNote(d.guest ? t('savedGuest') : t('savedOk')))
-      .catch(() => setSavedNote(t('savedFail')))
+      .then((d) => setSavedNote({ tone: 'ok', text: d.guest ? t('savedGuest') : t('savedOk') }))
+      .catch(() => setSavedNote({ tone: 'err', text: t('savedFail') }))
     window.scrollTo({ top: 0, behavior: 'smooth' })
   }
 
@@ -271,17 +387,40 @@ export function TestRunner() {
 
   return (
     <>
+      {fellBack && (
+        <p className="status" style={{ marginBottom: 12 }}>
+          {t('v2Fallback')}
+        </p>
+      )}
       <div className="sticky-bar">
         <div>
           <div style={{ fontWeight: 700 }}>{test.title}</div>
+          {test.bank_version === 2 && (
+            <div className="muted" style={{ fontSize: 12 }}>
+              {t('bankV2')}
+            </div>
+          )}
           <div className="progress">
             {answeredCount} / {total} {t('answered')}
           </div>
         </div>
         <div style={{ display: 'flex', gap: 14, alignItems: 'center' }}>
           {scoreText && <span className="score">{scoreText}</span>}
-          {savedNote && <span className="saved-note">{savedNote}</span>}
-          <span className={left < 300 && !submitted ? 'timer low' : 'timer'}>⏱ {fmtTime(left)}</span>
+          {savedNote && (
+            <span className={`saved-note ${savedNote.tone}`}>
+              {savedNote.tone === 'ok' ? (
+                <Check size={13} aria-hidden="true" />
+              ) : savedNote.tone === 'err' ? (
+                <AlertTriangle size={13} aria-hidden="true" />
+              ) : (
+                <Clock size={13} aria-hidden="true" />
+              )}
+              {savedNote.text}
+            </span>
+          )}
+          <span className={left < 300 && !submitted ? 'timer low' : 'timer'}>
+            <Clock size={14} aria-hidden="true" /> {fmtTime(left)}
+          </span>
           <button className="btn secondary" type="button" onClick={() => navigate('/tests')}>
             {t('exit')}
           </button>
@@ -290,13 +429,14 @@ export function TestRunner() {
           </button>
         </div>
       </div>
-      <div className="card" style={{ fontSize: 13.5, color: '#555' }}>
+      <div className="card" style={{ fontSize: 13.5, color: 'var(--ink-2)' }}>
         {test.instructions}
       </div>
       {test.questions.map((q) => (
         <QuestionCard
           key={q.n}
           q={q}
+          tax={tax}
           total={total}
           value={answers[q.n]}
           submitted={submitted}
