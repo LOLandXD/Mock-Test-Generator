@@ -1510,6 +1510,96 @@ table.stats th {
   margin-top: 22px;
 }
 
+/* ---------- LC-style document tiles (school / class materials) ---------- */
+.doc-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 10px;
+  margin-top: 8px;
+}
+
+.doc-tile {
+  border: 1px solid var(--border);
+  border-radius: var(--radius, 8px);
+  padding: 10px 12px;
+  background: var(--panel, transparent);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.doc-tile-head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.doc-tile-icon {
+  color: var(--ink-2);
+  flex-shrink: 0;
+}
+
+.doc-tile-name {
+  font-weight: 600;
+  font-size: 14px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.doc-tile-meta {
+  font-size: 12px;
+}
+
+.doc-tile-actions {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  margin-top: auto;
+}
+
+.doc-tile-actions .btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  text-decoration: none;
+}
+
+.doc-upload {
+  margin: 8px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.doc-teacher-bar {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  margin: 8px 0;
+}
+
+.doc-cat {
+  margin-top: 14px;
+}
+
+.doc-class {
+  margin-top: 10px;
+  border-top: 1px dashed var(--border);
+  padding-top: 8px;
+}
+
+.doc-class-head {
+  margin: 0 0 6px;
+  font-size: 14px;
+  color: var(--ink-2);
+}
+
+.btn.ghost.danger {
+  color: var(--danger, #b3402e);
+}
+
 .dr-cat-head {
   border-bottom: 2px solid var(--border);
   padding-bottom: 6px;

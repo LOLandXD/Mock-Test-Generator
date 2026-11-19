@@ -155,16 +155,30 @@ GET  /api/reports   (own problem reports)
 GET  /api/generate/<slug>[/<round>]?v=<1|2>   GET /api/test/<id>   GET /figures/<file>
 GET  /api/practice  /api/classes  /api/class/<code>/reports  /api/schools  /api/school/docs
 GET  /api/pk  /api/pk/invites  /api/pk/<gid>  /api/chat/<user>  /api/worksheets
+GET  /api/school/docs  /api/class/<code>/docs   (LC 式资料区，见下)
 GET  /api/test/<id>/classify   (per-question teacher classification)
 POST /api/register /api/login /api/logout /api/result /api/practice /api/report
 POST /api/practice_similar   (wrong questions -> same-topic variant test)
 POST /api/friends/(request|accept|decline|remove)  /api/chat/<user>
-POST /api/class/create /api/class/join  /api/pk/(challenge|respond|start)
-POST /api/school/join /api/school/leave /api/school/docs/upload  /api/worksheet/generate
+POST /api/class/create /api/class/join  /api/class/<code>/docs/upload  /api/class/<code>/docs/<id>/delete
+POST /api/pk/(challenge|respond|start)
+POST /api/school/join /api/school/leave /api/school/docs/upload  /api/school/docs/<id>/delete  /api/worksheet/generate
 GET  /api/wechat/login-url   GET /wechat/callback   (微信扫码登录，见 §12；回调在 iframe 内同源跳转，父页轮询 /api/me)
 ```
 
 一切非 `/api/`、非 `/figures/` 的 GET 交给 `_serve_web()`：先找 `app/web/dist`，找不到再回退 `app/static`。
+
+## 5.1 LC 式资料区（school / class documents）
+
+仿 LinkedClassroom 的资料 tile：文件存 `school_docs/` 与 `class_docs/`（gitignored），
+元数据分别在 `school_docs.json` / `class_docs.json`。上传走 base64 JSON（25MB 上限，
+类型白名单 `DOC_MIME`）。
+
+- **School**（`/school` 页，侧栏 School tab）：**只有教师能上传**（后端强制）；本校学生
+  浏览/在线打开（pdf/png/jpg/txt/md `?inline=1`）/下载。未加入学校时页面提供 join。
+- **Class**（Classes 页每个班级卡片内的 Materials 区）：**师生都能上传**（成员校验
+  `_class_member`）；删除仅限上传者或任课教师。
+- 共享 UI 在 `components/Docs.tsx`（DocTiles 卡片网格 + DocUploadForm）。
 
 ## 6. 前端结构（`app/web/src/`）
 

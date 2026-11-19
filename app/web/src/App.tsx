@@ -18,6 +18,7 @@ const Whiteboard = lazy(() => import('./routes/Whiteboard').then((m) => ({ defau
 const Friends = lazy(() => import('./routes/Friends').then((m) => ({ default: m.Friends })))
 const Pk = lazy(() => import('./routes/Pk').then((m) => ({ default: m.Pk })))
 const Classes = lazy(() => import('./routes/Classes').then((m) => ({ default: m.Classes })))
+const School = lazy(() => import('./routes/School').then((m) => ({ default: m.School })))
 const Login = lazy(() => import('./routes/Login').then((m) => ({ default: m.Login })))
 
 export default function App() {
@@ -61,6 +62,14 @@ export default function App() {
           element={
             <RequireAuth>
               <Classes />
+            </RequireAuth>
+          }
+        />
+        <Route
+          path="school"
+          element={
+            <RequireAuth>
+              <School />
             </RequireAuth>
           }
         />

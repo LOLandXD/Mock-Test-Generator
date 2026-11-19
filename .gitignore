@@ -52,3 +52,7 @@ scripts/shsid_watch.sh
 
 # WeChat open-platform credentials (website app) - local only
 wechat.json
+
+# class/school document stores (uploaded files, runtime data)
+class_docs/
+class_docs.json

@@ -1,10 +1,71 @@
 import { useEffect, useState } from 'react'
-import { api, type ClassInfo, type ClassReport } from '../lib/api'
+import { api, type ClassDoc, type ClassInfo, type ClassReport } from '../lib/api'
 import { ArrowRight, Check } from '../components/icons'
+import { DocTiles, DocUploadForm, readFileAsB64 } from '../components/Docs'
 import { useAuth } from '../lib/auth'
 import { useI18n } from '../lib/i18n'
 
 type ReportsState = ClassReport[] | 'loading' | null
+
+/** LC-style class materials: any class member (student or teacher) can upload. */
+function ClassMaterials({ code, teacher }: { code: string; teacher?: string }) {
+  const { t } = useI18n()
+  const { user } = useAuth()
+  const [docs, setDocs] = useState<ClassDoc[] | null>(null)
+  const [busy, setBusy] = useState(false)
+  const [msg, setMsg] = useState<{ ok: boolean; text: string } | null>(null)
+
+  useEffect(() => {
+    api
+      .classDocs(code)
+      .then((d) => setDocs(d.docs))
+      .catch(() => setDocs([]))
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- reload only per class
+  }, [code])
+
+  async function upload(file: File, title: string) {
+    setBusy(true)
+    setMsg(null)
+    try {
+      const dataB64 = await readFileAsB64(file)
+      await api.classDocUpload(code, { title, filename: file.name, data_b64: dataB64 })
+      setMsg({ ok: true, text: t('docUploaded') })
+      const d = await api.classDocs(code)
+      setDocs(d.docs)
+    } catch (e) {
+      setMsg({ ok: false, text: e instanceof Error ? e.message : String(e) })
+    } finally {
+      setBusy(false)
+    }
+  }
+
+  async function del(doc: ClassDoc) {
+    try {
+      await api.classDocDelete(code, doc.id)
+      setDocs((prev) => (prev ?? []).filter((x) => x.id !== doc.id))
+    } catch (e) {
+      setMsg({ ok: false, text: e instanceof Error ? e.message : String(e) })
+    }
+  }
+
+  return (
+    <div className="doc-class">
+      <h5 className="doc-class-head">{t('clMaterials')}</h5>
+      <DocUploadForm onUpload={(f, title) => void upload(f, title)} busy={busy} />
+      {msg && <div className={`auth-msg ${msg.ok ? 'ok' : 'err'}`}>{msg.text}</div>}
+      {docs === null ? (
+        <p className="muted">{t('loading')}</p>
+      ) : (
+        <DocTiles
+          docs={docs}
+          downloadUrl={(d) => `/api/class/${code}/docs/${d.id}/download`}
+          canDelete={(d) => d.uploader === user || user === teacher}
+          onDelete={(d) => void del(d as ClassDoc)}
+        />
+      )}
+    </div>
+  )
+}
 
 function ReportsTable({ reports }: { reports: ClassReport[] }) {
   const { t } = useI18n()
@@ -166,6 +227,7 @@ export function Classes() {
                   </div>
                   {reports[c.code] === 'loading' && <p className="muted">{t('loading')}</p>}
                   {Array.isArray(reports[c.code]) && <ReportsTable reports={reports[c.code] as ClassReport[]} />}
+                  <ClassMaterials code={c.code} teacher={c.teacher} />
                 </div>
               ))
             ) : (
@@ -205,6 +267,7 @@ export function Classes() {
                   <div className="meta">
                     {t('clSchool')}: {c.school} · {t('clTeacher')}: {c.teacher || '—'}
                   </div>
+                  <ClassMaterials code={c.code} teacher={c.teacher} />
                 </div>
               ))
             ) : (

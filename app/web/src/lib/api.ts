@@ -193,6 +193,35 @@ export interface ClassReport {
   submitted_at: string
 }
 
+/** Shared shape of an uploaded document (school doc or class doc). */
+export interface DocLike {
+  id: string
+  title: string
+  filename: string
+  ext: string
+  size: number
+  uploader: string
+  uploaded_at: string
+}
+
+export interface SchoolDoc extends DocLike {
+  school: string
+  category: string
+  chapter: string
+}
+
+export interface ClassDoc extends DocLike {
+  class: string
+}
+
+export interface DocUploadBody {
+  title: string
+  filename: string
+  data_b64: string
+  category?: string
+  chapter?: string
+}
+
 /** Thrown for any non-2xx response; `status` mirrors the HTTP code, message is the server's `error`. */
 export class ApiError extends Error {
   readonly status: number
@@ -451,6 +480,23 @@ export const api = {
   classCreate: (name: string, code: string) => post<{ ok: boolean; code: string }>('/api/class/create', { name, code }),
   classJoin: (code: string) => post<{ ok: boolean; name: string; school: string }>('/api/class/join', { code }),
   classReports: (code: string) => request<{ reports: ClassReport[] }>(`/api/class/${code}/reports`),
+
+  // school documents (LC-style: teachers upload, whole school reads/downloads)
+  schools: () => request<{ schools: string[] }>('/api/schools'),
+  schoolJoin: (school: string) => post<{ ok: boolean }>('/api/school/join', { school }),
+  schoolLeave: () => post<{ ok: boolean }>('/api/school/leave'),
+  schoolDocs: (category = '') =>
+    request<{ categories: string[]; docs: SchoolDoc[] }>(
+      `/api/school/docs${category ? `?category=${encodeURIComponent(category)}` : ''}`,
+    ),
+  schoolDocUpload: (body: DocUploadBody) => post<{ ok: boolean; id: string }>('/api/school/docs/upload', body),
+  schoolDocDelete: (id: string) => post<{ ok: boolean }>(`/api/school/docs/${id}/delete`),
+
+  // class documents (LC-style: any member — student or teacher — can upload)
+  classDocs: (code: string) => request<{ docs: ClassDoc[] }>(`/api/class/${code}/docs`),
+  classDocUpload: (code: string, body: DocUploadBody) =>
+    post<{ ok: boolean; id: string }>(`/api/class/${code}/docs/upload`, body),
+  classDocDelete: (code: string, id: string) => post<{ ok: boolean }>(`/api/class/${code}/docs/${id}/delete`),
 
   // worksheets (upload a txt/md/json file -> printable worksheet)
   worksheetGenerate: (body: { filename: string; data_b64: string }) =>

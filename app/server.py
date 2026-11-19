@@ -392,6 +392,53 @@ def _doc_visible_to(doc, school_norm):
     return _norm_school(doc.get("school")) == school_norm
 
 
+# --- class documents storage (students AND teachers of the class can upload) ---
+CLASS_DOCS_FILE = ROOT / "class_docs.json"
+CLASS_DOCS_DIR = ROOT / "class_docs"
+CLASS_DOC_VIEWABLE = ("pdf", "png", "jpg", "jpeg", "txt", "md")
+
+
+def _read_class_docs():
+    return _load_json(CLASS_DOCS_FILE, {})
+
+
+def _write_class_docs(d):
+    _save_json(CLASS_DOCS_FILE, d)
+
+
+def _class_doc_file(doc):
+    return CLASS_DOCS_DIR / f"{doc['id']}.{doc['ext']}"
+
+
+def _class_member(code, user):
+    """The class dict if user is its teacher or a student, else None."""
+    c = _read_classes().get(code)
+    if not c or not user:
+        return None
+    if user == c.get("teacher") or user in c.get("students", []):
+        return c
+    return None
+
+
+def _doc_json_ok(data):
+    """Shared upload validation -> (title, filename, ext, blob) or (None, error_msg)."""
+    import base64
+    raw_name = os.path.basename(data.get("filename") or "")[:120]
+    ext = raw_name.rsplit(".", 1)[1].lower() if "." in raw_name else ""
+    title = (data.get("title") or "").strip()[:120]
+    if ext not in DOC_MIME:
+        return None, "file type not allowed"
+    try:
+        blob = base64.b64decode(data.get("data_b64") or "", validate=True)
+    except Exception:
+        return None, "bad file data"
+    if not blob:
+        return None, "empty file"
+    if len(blob) > DOC_MAX_BYTES:
+        return None, "file too large (max 25 MB)"
+    return (title or raw_name.rsplit(".", 1)[0], raw_name, ext, blob), None
+
+
 # ---------- worksheets (upload a text/json/pdf/image file -> printable worksheet) ----------
 WORKSHEETS_DIR = ROOT / "worksheets"
 WS_MAX_BYTES = 10 * 1024 * 1024  # 10 MB raw (pdf/images)
@@ -2089,6 +2136,37 @@ class Handler(BaseHTTPRequestHandler):
                         self.send_header("Content-Disposition", f'{disp}; filename="{name}"')
                         self.end_headers()
                         self.wfile.write(data)
+        elif m := re.match(r"^/api/class/([A-Za-z0-9_-]+)/docs$", path):
+            if not _class_member(m.group(1), user):
+                self._send('{"error": "class member required"}', code=403)
+            else:
+                docs = [d for d in _read_class_docs().values() if d.get("class") == m.group(1)]
+                docs.sort(key=lambda d: d.get("uploaded_at", ""), reverse=True)
+                self._send(json.dumps({"docs": docs}))
+        elif m := re.match(r"^/api/class/([A-Za-z0-9_-]+)/docs/([a-f0-9]+)/download$", path):
+            if not _class_member(m.group(1), user):
+                self._send('{"error": "class member required"}', code=403)
+            else:
+                doc = _read_class_docs().get(m.group(2))
+                if not doc or doc.get("class") != m.group(1):
+                    self._send('{"error": "not found"}', code=404)
+                else:
+                    f = _class_doc_file(doc)
+                    if not f.exists():
+                        self._send('{"error": "file missing"}', code=404)
+                    else:
+                        from urllib.parse import parse_qs, urlparse
+                        qs = parse_qs(urlparse(self.path).query)
+                        inline = qs.get("inline", [""])[0] == "1" and doc["ext"] in CLASS_DOC_VIEWABLE
+                        disp = "inline" if inline else "attachment"
+                        name = (doc.get("filename") or doc["title"]).replace("\\", "_").replace('"', "_")
+                        data = f.read_bytes()
+                        self.send_response(200)
+                        self.send_header("Content-Type", DOC_MIME.get(doc["ext"], "application/octet-stream"))
+                        self.send_header("Content-Length", str(len(data)))
+                        self.send_header("Content-Disposition", f'{disp}; filename="{name}"')
+                        self.end_headers()
+                        self.wfile.write(data)
         elif path == "/api/stats":
             self._send(json.dumps(compute_stats(user)))
         elif m := re.match(r"^/api/test/([a-z0-9_]+)$", path):
@@ -2499,6 +2577,50 @@ class Handler(BaseHTTPRequestHandler):
                     users[user].pop("school", None)
                     _write_users(users)
                 self._send('{"ok": true}')
+        elif m := re.match(r"^/api/class/([A-Za-z0-9_-]+)/docs/upload$", path):
+            code = m.group(1)
+            if not user:
+                self._send('{"error": "login required"}', code=401)
+            elif not _class_member(code, user):
+                self._send('{"error": "class member required"}', code=403)
+            else:
+                try:
+                    parsed, err = _doc_json_ok(self._read_body())
+                    if err:
+                        self._send(json.dumps({"error": err}), code=400)
+                    else:
+                        title, raw_name, ext, blob = parsed
+                        doc_id = secrets.token_hex(8)
+                        doc = {"id": doc_id, "class": code, "title": title,
+                               "filename": raw_name, "ext": ext, "size": len(blob),
+                               "uploader": user,
+                               "uploaded_at": time.strftime("%Y-%m-%d %H:%M:%S")}
+                        CLASS_DOCS_DIR.mkdir(exist_ok=True)
+                        _class_doc_file(doc).write_bytes(blob)
+                        with _store_lock:
+                            docs = _read_class_docs()
+                            docs[doc_id] = doc
+                            _write_class_docs(docs)
+                        self._send(json.dumps({"ok": True, "id": doc_id}))
+                except Exception as e:
+                    self._send(json.dumps({"error": str(e)}), code=400)
+        elif m := re.match(r"^/api/class/([A-Za-z0-9_-]+)/docs/([a-f0-9]+)/delete$", path):
+            code, doc_id = m.group(1), m.group(2)
+            cls = _class_member(code, user)
+            doc = _read_class_docs().get(doc_id)
+            if not cls:
+                self._send('{"error": "class member required"}', code=403)
+            elif not doc or doc.get("class") != code:
+                self._send('{"error": "not found"}', code=404)
+            elif doc.get("uploader") != user and user != cls.get("teacher"):
+                self._send('{"error": "only the uploader or class teacher can delete"}', code=403)
+            else:
+                _class_doc_file(doc).unlink(missing_ok=True)
+                with _store_lock:
+                    docs = _read_class_docs()
+                    docs.pop(doc_id, None)
+                    _write_class_docs(docs)
+                self._send('{"ok": true}')
         elif path == "/api/school/docs/upload":
             if not user:
                 self._send('{"error": "login required"}', code=401)
@@ -2548,6 +2670,27 @@ class Handler(BaseHTTPRequestHandler):
                                     self._send(json.dumps({"ok": True, "id": doc_id}))
                         except Exception as e:
                             self._send(json.dumps({"error": str(e)}), code=400)
+        elif m := re.match(r"^/api/school/docs/([a-f0-9]+)/delete$", path):
+            if not user:
+                self._send('{"error": "login required"}', code=401)
+            else:
+                u = _read_users().get(user) or {}
+                doc = _read_school_docs().get(m.group(1))
+                _, norm = _user_school_entry(user)
+                can_delete = (
+                    u.get("role") == "teacher" and doc and norm
+                    and _doc_visible_to(doc, norm)
+                    and (doc.get("uploader") == user or _norm_school(doc.get("school")) == norm)
+                )
+                if not can_delete:
+                    self._send('{"error": "forbidden"}', code=403)
+                else:
+                    _doc_file(doc).unlink(missing_ok=True)
+                    with _store_lock:
+                        docs = _read_school_docs()
+                        docs.pop(m.group(1), None)
+                        _write_school_docs(docs)
+                    self._send('{"ok": true}')
         elif m := re.match(r"^/api/school/docs/([a-f0-9]+)/edit$", path):
             if not user:
                 self._send('{"error": "login required"}', code=401)

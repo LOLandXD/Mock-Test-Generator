@@ -45,6 +45,7 @@ const tabs: Tab[] = [
   { to: '/friends', labelKey: 'tabFriends', icon: <Users size={18} />, authOnly: true },
   { to: '/pk', labelKey: 'tabPK', icon: <Swords size={18} />, authOnly: true },
   { to: '/classes', labelKey: 'tabClasses', icon: <School size={18} />, authOnly: true },
+  { to: '/school', labelKey: 'tabSchool', icon: <BookOpen size={18} />, authOnly: true },
 ]
 
 export function Layout() {
